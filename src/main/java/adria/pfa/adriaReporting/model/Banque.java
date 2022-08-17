@@ -23,9 +23,9 @@ public class Banque {
     @Column(name = "address")
     private String address;
 
-    @OneToMany
+    @OneToMany(mappedBy = "banque", fetch = FetchType.LAZY)
     private Collection<Client> clients = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "banque", fetch = FetchType.LAZY)
     private Collection<Beneficiaire> beneficiaires = new ArrayList<>();
 }

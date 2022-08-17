@@ -19,7 +19,7 @@ public class DocumentJoint {
     @Column(name="type")
     private String type;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "transaction_id")
     private Transaction transaction;
 }

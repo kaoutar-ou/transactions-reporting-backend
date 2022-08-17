@@ -41,14 +41,14 @@ public class Transaction {
     @CreationTimestamp
     private Timestamp dateCreation;
 
-    @OneToMany
+    @OneToMany(mappedBy = "transaction", fetch = FetchType.EAGER)
     private Collection<DocumentJoint> documentJoints = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "client_id")
     private Client client;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "beneficaire_id")
     private Beneficiaire beneficiaire;
 

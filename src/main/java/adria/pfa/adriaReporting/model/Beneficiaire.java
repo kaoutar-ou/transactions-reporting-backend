@@ -12,9 +12,9 @@ import java.util.Collection;
 @NoArgsConstructor
 @Entity
 public class Beneficiaire extends User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id_Beneficiary;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+//    private Long id_Beneficiary;
     @Column(name = "nomComplet")
     private String nomComplet;
     @Column(name = "address")
@@ -24,10 +24,10 @@ public class Beneficiaire extends User {
     @Column(name = "account")
     private Long account;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "banque_id")
     private Banque banque;
 
-    @OneToMany
+    @OneToMany(mappedBy = "beneficiaire", fetch = FetchType.EAGER)
     private Collection<Transaction> transactions = new ArrayList<>();
 }

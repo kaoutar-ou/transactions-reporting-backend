@@ -11,9 +11,9 @@ import java.util.Collection;
 @AllArgsConstructor
 @Data
 public class Client extends User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id_User;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+//    private Long id_User;
     @Column(name = "nomComplet")
     private String nomComplet;
     @Column(name = "address")
@@ -21,10 +21,10 @@ public class Client extends User {
     @Column(name = "account")
     private Long account;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "banque_id")
     private Banque banque;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Collection<Transaction> transactions = new ArrayList<>();
 }
