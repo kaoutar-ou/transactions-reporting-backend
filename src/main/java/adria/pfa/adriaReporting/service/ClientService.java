@@ -1,5 +1,6 @@
 package adria.pfa.adriaReporting.service;
 
+import adria.pfa.adriaReporting.dao.TransactionDao;
 import adria.pfa.adriaReporting.enumeration.TypeProduit;
 import adria.pfa.adriaReporting.enumeration.TypeTransaction;
 import adria.pfa.adriaReporting.model.Beneficiaire;
@@ -7,6 +8,7 @@ import adria.pfa.adriaReporting.model.Client;
 import adria.pfa.adriaReporting.model.Transaction;
 import adria.pfa.adriaReporting.repository.BeneficiaireRepository;
 import adria.pfa.adriaReporting.repository.ClientRepository;
+import adria.pfa.adriaReporting.repository.CustomTransactionRepository;
 import adria.pfa.adriaReporting.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,9 @@ public class ClientService {
 
     @Autowired
     private TransactionRepository transactionRepository;
+
+    @Autowired
+    private CustomTransactionRepository customTransactionRepository;
 
     public List<Transaction> listTransactions(Long client_id) {
         Client client = clientRepository.findById(client_id).get();
@@ -68,4 +73,8 @@ public class ClientService {
 //
 //    }
 
+    public List<Transaction> searchTransactionsBy(Long client_id, TransactionDao transaction) {
+        Client client = clientRepository.findById(client_id).get();
+        return customTransactionRepository.searchTransactionsBy(client, transaction);
+    }
 }

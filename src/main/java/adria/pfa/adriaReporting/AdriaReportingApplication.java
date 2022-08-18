@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @SpringBootApplication
 public class AdriaReportingApplication {
@@ -42,8 +43,11 @@ public class AdriaReportingApplication {
         return args -> {
             Banque banque1 = banqueRepository.save(new Banque(null, "banque1", "codeBIC1", "address1", new ArrayList<Client>(), new ArrayList<Beneficiaire>()));
             Banque banque2 = banqueRepository.save(new Banque(null, "banque2", "codeBIC2", "address2", new ArrayList<Client>(), new ArrayList<Beneficiaire>()));
+//            Banque banque1 = banqueRepository.save(new Banque(null, "banque1", "codeBIC1", "address1"));
+//            Banque banque2 = banqueRepository.save(new Banque(null, "banque2", "codeBIC2", "address2"));
 
             Client client1 = new Client("nomComplet1", "address1", 123456L, banque1, new ArrayList<Transaction>());
+//            Client client1 = new Client("nomComplet1", "address1", 123456L, banque1);
             client1.setNom("nom1");
             client1.setPrenom("prenom1");
             client1.setUsername("username1");
@@ -54,6 +58,7 @@ public class AdriaReportingApplication {
 //			clientRepository.save(new Client( null, "nomComplet2", "address2", 1234567L, banque1, new ArrayList<Transaction>()));
 
             Beneficiaire beneficiaire1 = new Beneficiaire("nomComplet1", "address1", "status1", 123456L, banque1, new ArrayList<Transaction>());
+//            Beneficiaire beneficiaire1 = new Beneficiaire("nomComplet1", "address1", "status1", 123456L, banque1);
             beneficiaire1.setNom("bnom1");
             beneficiaire1.setPrenom("bprenom1");
             beneficiaire1.setUsername("busername1");
@@ -62,6 +67,7 @@ public class AdriaReportingApplication {
             beneficiaire1.setType("btype1");
             beneficiaireRepository.save(beneficiaire1);
             Beneficiaire beneficiaire2 = new Beneficiaire("nomComplet2", "address2", "status2", 1234567L, banque2, new ArrayList<Transaction>());
+//            Beneficiaire beneficiaire2 = new Beneficiaire("nomComplet2", "address2", "status2", 1234567L, banque2);
             beneficiaire2.setNom("bnom2");
             beneficiaire2.setPrenom("bprenom2");
             beneficiaire2.setUsername("busername2");
@@ -75,6 +81,12 @@ public class AdriaReportingApplication {
             transactionRepository.save(new Transaction("reference3", TypeTransaction.MESSAGE, TypePayement.PAYEMENT_CONTRE, TypeProduit.IMPORT, new Date(), 41452, new ArrayList<DocumentJoint>(), client1, beneficiaire1));
             transactionRepository.save(new Transaction("reference4", TypeTransaction.MODIFICATION, TypePayement.PAYEMENT_DIFFERE, TypeProduit.EXPORT, new Date(), 71452, new ArrayList<DocumentJoint>(), client1, beneficiaire1));
             transactionRepository.save(new Transaction("reference5", TypeTransaction.EMISSION, TypePayement.PAYEMENT_CONTRE, TypeProduit.EXPORT, new Date(), 17452, new ArrayList<DocumentJoint>(), client1, beneficiaire2));
+
+//            List<Transaction> transactionList = transactionRepository.searchAllByBeneficiaireOrMontant(beneficiaire2, 0);
+//            for (Transaction t: transactionList
+//                 ) {
+//                System.out.println(t.getId());
+//            }
         };
     }
 }

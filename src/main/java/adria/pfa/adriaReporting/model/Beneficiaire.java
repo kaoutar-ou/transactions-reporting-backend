@@ -1,5 +1,8 @@
 package adria.pfa.adriaReporting.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,8 +29,11 @@ public class Beneficiaire extends User {
 
     @ManyToOne
     @JoinColumn(name = "banque_id")
+//    @JsonBackReference
     private Banque banque;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "beneficiaire", fetch = FetchType.EAGER)
+//    @JsonManagedReference
     private Collection<Transaction> transactions = new ArrayList<>();
 }

@@ -1,5 +1,7 @@
 package adria.pfa.adriaReporting.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,9 +25,13 @@ public class Banque {
     @Column(name = "address")
     private String address;
 
+//    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "banque", fetch = FetchType.LAZY)
     private Collection<Client> clients = new ArrayList<>();
 
+//    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "banque", fetch = FetchType.LAZY)
     private Collection<Beneficiaire> beneficiaires = new ArrayList<>();
 }

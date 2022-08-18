@@ -21,4 +21,6 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     List<Transaction> findAllByClientAndReference(Client client, String reference);
     List<Transaction> findAllByClientAndTypeProduit(Client client, TypeProduit typeProduit);
     List<Transaction> findAllByClientAndDateCreation(Client client, Date dateCreation);
+
+//    List<Transaction> searchAllByBeneficiaireOrMontant(Beneficiaire b, double m);
 }
