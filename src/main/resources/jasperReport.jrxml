@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.19.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="transactionReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1b294190-08a9-4e75-94e8-bef35da2fd59">
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="sql jdbc Connection"/>
+    <queryString language="SQL">
+        <![CDATA[]]>
+    </queryString>
+    <field name="reference" class="java.lang.String"/>
+    <field name="typePayement" class="adria.pfa.adriaReporting.enumeration.TypePayement"/>
+    <field name="typeProduit" class="adria.pfa.adriaReporting.enumeration.TypeProduit"/>
+    <field name="dateExpiration" class="java.sql.Timestamp"/>
+    <field name="typeTransaction" class="adria.pfa.adriaReporting.enumeration.TypeTransaction"/>
+    <field name="dateCreation" class="java.sql.Timestamp"/>
+    <field name="clientname" class="java.lang.String"/>
+    <field name="clientaddress" class="java.lang.String"/>
+    <field name="clientaccount" class="java.lang.Long"/>
+    <field name="montant" class="java.lang.Double"/>
+    <field name="beneficiairestatus" class="java.lang.String"/>
+    <field name="beneficiaireaccount" class="java.lang.Long"/>
+    <field name="beneficiaireaddress" class="java.lang.String"/>
+    <field name="beneficiairename" class="java.lang.String"/>
+    <field name="beneficiairebankname" class="java.lang.String"/>
+    <field name="beneficiairecodeBIC" class="java.lang.String"/>
+    <field name="beneficiaireBankaddress" class="java.lang.String"/>
+    <field name="clientbankname" class="java.lang.String"/>
+    <field name="clientcodeBIC" class="java.lang.String"/>
+    <field name="clientbankadaress" class="java.lang.String"/>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+
+    <columnHeader>
+        <band height="93" splitType="Stretch"/>
+    </columnHeader>
+    <detail>
+        <band height="709" splitType="Stretch">
+            <rectangle>
+                <reportElement x="0" y="50" width="555" height="155" uuid="10c2496a-3a70-4773-b925-b962cae1b44a"/>
+                <graphicElement>
+                    <pen lineWidth="2.0" lineColor="#CCC8C8"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="0" y="208" width="555" height="20" backcolor="#FF6600" uuid="57b4a80f-6f74-4916-b1ce-6b837455662b"/>
+            </rectangle>
+            <rectangle>
+                <reportElement x="0" y="230" width="555" height="100" uuid="1ac2e90a-be44-44b7-8b8f-ad165477f66d"/>
+                <graphicElement>
+                    <pen lineWidth="2.0" lineColor="#CCC8C8"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="0" y="330" width="555" height="20" backcolor="#FF6600" uuid="2aa1f627-0f1a-47f4-b2ae-7ef2c2619c6f"/>
+            </rectangle>
+            <rectangle>
+                <reportElement x="0" y="352" width="555" height="148" uuid="973b247c-e045-4c8a-b67b-c896a1758b14"/>
+                <graphicElement>
+                    <pen lineWidth="2.0" lineColor="#CCC8C8"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="0" y="500" width="555" height="20" backcolor="#FF6600" uuid="1d9dc3ed-a683-4eb0-931c-f0f226507d5e"/>
+            </rectangle>
+            <rectangle>
+                <reportElement x="0" y="520" width="555" height="189" uuid="0f4fce82-f554-41f4-976a-aaf42d681a12"/>
+                <graphicElement>
+                    <pen lineWidth="2.0" lineColor="#CCC8C8"/>
+                </graphicElement>
+            </rectangle>
+            <staticText>
+                <reportElement x="5" y="203" width="115" height="30" forecolor="#FFFFFF" uuid="5cf40d35-9c15-42de-90cc-246d35741675"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="14"/>
+                </textElement>
+                <text><![CDATA[Customer Details]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="10" y="322" width="120" height="30" forecolor="#FFFFFF" uuid="51a7760c-2f46-4198-bef4-90e1b2e87b75"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="14"/>
+                </textElement>
+                <text><![CDATA[Beneficiary Details]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="15" y="493" width="100" height="30" forecolor="#FFFFFF" uuid="37ae81a3-915e-44fa-9e18-014b9d6a6e97"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="14"/>
+                </textElement>
+                <text><![CDATA[Banks Details]]></text>
+            </staticText>
+            <rectangle>
+                <reportElement x="15" y="60" width="130" height="20" uuid="c475a25b-7ce2-49d2-90e8-e10e36d1c041"/>
+                <graphicElement>
+                    <pen lineColor="#FFFFFF"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="15" y="98" width="130" height="20" uuid="ccb84aa0-26e2-4850-ac53-04cecc27a9ea"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="216" y="55" width="130" height="20" uuid="bcf9f349-2c38-43e9-a97c-dfb2a83b7bfd"/>
+                <graphicElement>
+                    <pen lineColor="#FFFFFF"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="216" y="78" width="130" height="20" uuid="6ea11454-7c9a-4bc0-856b-8617d8d3dca5"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="216" y="99" width="130" height="20" uuid="5701b8bc-f5ac-442b-8690-600532b34846"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="216" y="124" width="130" height="20" uuid="30f1afe4-2fc6-4882-9efe-05b318e80799"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="216" y="154" width="130" height="20" uuid="6753cbbb-9f14-475a-9b8d-2f22c35abace"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="216" y="181" width="130" height="20" uuid="38cb327b-1c15-43db-80f9-a1d0aa0f11a5"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="17" y="140" width="130" height="20" uuid="6ec29bf4-bd5a-4837-a689-b57c4bebb1a1"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="18" y="166" width="130" height="20" uuid="167632a6-18cb-453e-9fd4-77e3e339382a"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="399" y="62" width="130" height="20" uuid="02c396af-4a0d-4408-ad39-bffb7fd98618"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="399" y="93" width="130" height="20" uuid="6f4fa777-4002-442d-8f85-f698ccd664a0"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="399" y="139" width="130" height="20" uuid="4dedd448-7f4a-4e68-8a0e-25a2b41274a9"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="399" y="171" width="130" height="20" uuid="3a4262de-8664-455a-93cc-928e5d7bbb5b"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <textField>
+                <reportElement x="26" y="100" width="100" height="30" uuid="5c3e2aeb-ed30-4486-9cfe-5897ae15cf81">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f6758145-3fd8-4104-8789-590e43ebeb40"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{reference}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="32" y="62" width="100" height="30" uuid="e4aed033-72f9-4acc-bd62-d64aa49e949f">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f6758145-3fd8-4104-8789-590e43ebeb40"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[reference]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="28" y="169" width="100" height="30" uuid="e529817e-996b-4af0-87df-17a4c83aec32">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="92c03037-c803-468a-bce2-120b4a871f20"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{montant}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="35" y="143" width="100" height="30" uuid="fc143b24-154c-4a63-bd88-58d035f3ab84">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="92c03037-c803-468a-bce2-120b4a871f20"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[montant]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="220" y="81" width="100" height="30" uuid="9ff8712e-3675-4bb0-9f9d-4fdb58782c08">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e36e0212-f580-4a12-b838-6de4569d64b5"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{typeTransaction}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="220" y="58" width="100" height="30" uuid="dd7cc5b2-f4de-44e0-8223-621b7a8fac4a">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e36e0212-f580-4a12-b838-6de4569d64b5"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[typeTransaction]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="210" y="246" width="140" height="30" uuid="64dc5a9d-7b45-4cee-af05-95d15a8f451f">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ab48e449-900d-44ee-af70-3c3ea91c38c7"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{typePayement}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="220" y="155" width="100" height="30" uuid="a63417c1-ff5b-4c52-9118-57fc4b5c7149">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ab48e449-900d-44ee-af70-3c3ea91c38c7"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[typePayement]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="223" y="128" width="100" height="30" uuid="def8f477-5f4e-4032-898a-a79faba7629b">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="67526383-1aa9-46cd-9afa-6944928a55f1"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{typeProduit}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="222" y="105" width="100" height="30" uuid="556d056f-d187-4b10-86ef-f29754a1a3a8">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="67526383-1aa9-46cd-9afa-6944928a55f1"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[typeProduit]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="405" y="97" width="100" height="30" uuid="7863f36c-abbf-4956-bec1-8d1e92a23c52">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ac6f93be-c5c2-4c23-a7d1-36c9a3263853"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{dateCreation}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="405" y="66" width="100" height="30" uuid="dd969de3-dc1c-4bf1-ab59-27bb361f7c5d">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ac6f93be-c5c2-4c23-a7d1-36c9a3263853"/>
+                </reportElement>
+                <box>
+                    <pen lineWidth="0.0"/>
+                </box>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[dateCreation]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="405" y="176" width="100" height="30" uuid="89ca61e5-1f84-4160-8082-245892a2e0ef">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="098f6982-ef85-497d-81b8-b94ce7d8934d"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{dateExpiration}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="405" y="142" width="100" height="30" uuid="20d5c668-43cc-401b-9f95-ec31a8be85c2">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="098f6982-ef85-497d-81b8-b94ce7d8934d"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[dateExpiration]]></text>
+            </staticText>
+            <rectangle>
+                <reportElement x="18" y="240" width="130" height="20" uuid="a2bfbc56-30b7-4c6c-8eb2-1f98d017b5ad"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="20" y="290" width="130" height="20" uuid="8db18279-4971-4fbe-b0f4-350aebc0fade"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="222" y="290" width="130" height="20" uuid="864d159a-2a48-44a1-b2e5-ec7a12e18957"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="220" y="240" width="130" height="20" uuid="28b0d95a-58be-447b-9847-6dd9e86f5cfb"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="407" y="290" width="130" height="20" uuid="8cdb3c15-0e17-4946-b159-396c33fc225f"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="405" y="240" width="130" height="20" uuid="684fec9f-584d-45d2-9441-7d11030c387f"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <textField>
+                <reportElement x="28" y="294" width="100" height="30" uuid="a1851183-5938-409c-8ff6-647f09bf096d">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="81d40e67-f833-466b-b610-312d66a68150"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{clientname}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="28" y="242" width="100" height="30" uuid="b342343b-af49-4041-98d3-ca623da8717f">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="81d40e67-f833-466b-b610-312d66a68150"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[clientname]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="231" y="294" width="100" height="30" uuid="2a3e9549-0e62-4eeb-a7c3-dc9317514412">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2b716db7-20b2-4611-809b-196fb3adc7f7"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{clientaccount}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="228" y="244" width="100" height="30" uuid="4749cd97-45e0-4d62-9eaa-cd0907ced210">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2b716db7-20b2-4611-809b-196fb3adc7f7"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[clientaccount]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="414" y="294" width="100" height="30" uuid="9867c8bd-fddb-41e4-811c-45fc80a92e1c">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="89569137-1962-48ba-90b3-29dd3b09de9f"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{clientaddress}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="414" y="244" width="100" height="30" uuid="b84aca4c-b671-4fc3-9491-722a6c31c97d">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="89569137-1962-48ba-90b3-29dd3b09de9f"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[clientaddress]]></text>
+            </staticText>
+            <rectangle>
+                <reportElement x="13" y="368" width="130" height="20" uuid="14b02c33-5e84-42a4-8bcb-881326426034"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="15" y="398" width="130" height="20" uuid="060a950c-4736-4f5c-babc-d2f8ce79b832"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="212" y="418" width="130" height="20" uuid="146c0a2a-78ba-4d4e-a41e-b5a74e081483"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="212" y="378" width="130" height="20" uuid="c101e35c-3ea7-41b8-ad1d-adbf8f01e3a6"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="390" y="418" width="130" height="20" uuid="5b37f0eb-7fc9-4ff5-94c8-59f6dfdcb4e1"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="390" y="378" width="130" height="20" uuid="e4a7ffb4-4278-4310-be77-00caabbf8444"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="15" y="438" width="130" height="20" uuid="9d7fbac9-aec5-4e5a-a6db-26dafd74b6c1"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="15" y="468" width="130" height="20" uuid="4c5e18e3-99b8-4eeb-9ba9-d956ec45bc5e"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <textField>
+                <reportElement x="20" y="401" width="100" height="30" uuid="4b1be9f4-f155-4209-a8c3-72e182460dc5">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e626dd31-ed11-4d77-9b6a-b92a16a41727"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{beneficiairename}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="18" y="373" width="100" height="30" uuid="e9797d41-2bc8-4f79-b340-e33b280302c9">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e626dd31-ed11-4d77-9b6a-b92a16a41727"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[beneficiairename]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="22" y="471" width="100" height="30" uuid="8894c95b-286d-4189-86fa-050c7b826aa9">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c57a1517-c338-44e6-bcd9-bffabe30fbfe"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{beneficiairestatus}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="26" y="443" width="100" height="30" uuid="e5c205e6-7f71-4a56-8c84-34d8233629d6">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c57a1517-c338-44e6-bcd9-bffabe30fbfe"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[beneficiairestatus]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="220" y="421" width="111" height="30" uuid="e2088462-75e4-4ebb-a5d7-75d6240610ac">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="85c5b1da-9aba-4581-ac1d-cc3f71896d39"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{beneficiaireaccount}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="219" y="381" width="112" height="30" uuid="7374ebeb-013c-4752-8f7a-d32ff6edbe66">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="85c5b1da-9aba-4581-ac1d-cc3f71896d39"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[beneficiaireaccount]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="399" y="421" width="114" height="30" uuid="647fb163-7e89-48ab-80e9-94755de38be7">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e4a1213e-4cc0-4908-8f83-3afc9ac63fed"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{beneficiaireaddress}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="399" y="381" width="100" height="30" uuid="4624fc2f-bda4-4481-968b-91b25bba8e1b">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e4a1213e-4cc0-4908-8f83-3afc9ac63fed"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[beneficaireaddress]]></text>
+            </staticText>
+            <rectangle>
+                <reportElement x="21" y="548" width="130" height="20" uuid="280b75e9-87db-4e58-9b33-4d14d5bf105b"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="23" y="574" width="130" height="20" uuid="9882fde0-b440-4e9f-b8cc-ed12b4802d61"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="223" y="548" width="130" height="20" uuid="2fbb0202-8c5b-4e2f-be10-91a3c70d4e61"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="225" y="574" width="130" height="20" uuid="bcb56238-ede1-4ea2-8cbb-c4877c74512f"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="408" y="548" width="130" height="20" uuid="d37653aa-63f7-43b7-b533-aa19a16500ef"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="410" y="574" width="130" height="20" uuid="8621541e-a85f-4c53-9b14-d64a94ad1beb"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <textField>
+                <reportElement x="11" y="576" width="173" height="30" uuid="7f7b1dfb-e12b-477d-b8dc-191554d52472">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f29b0546-923c-4c65-80bb-bf3dbdc88063"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{beneficiairebankname}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="31" y="551" width="100" height="30" uuid="f02e596a-bc88-4d92-ae71-13aa63486d25">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f29b0546-923c-4c65-80bb-bf3dbdc88063"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[bankname]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="216" y="577" width="168" height="30" uuid="5d6a612c-be33-4d93-8ff7-b850af1fe8a2">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8713de50-0ac3-44a2-a271-083565ab8b9f"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{beneficiairecodeBIC}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="234" y="552" width="100" height="30" uuid="db34a836-814b-46b7-97cc-d54eddc1d486">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8713de50-0ac3-44a2-a271-083565ab8b9f"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[codeBIC]]></text>
+            </staticText>
+            <textField>
+                <reportElement x="402" y="576" width="146" height="30" uuid="a3b08421-ea8f-4ea4-bd94-b8b117b8e53a">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bfd6242c-0de1-4b9c-99ee-c7ea9d413050"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{beneficiaireBankaddress}]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="419" y="551" width="100" height="30" uuid="c6262a69-bff9-4227-bacd-23a9cae3a3a5">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bfd6242c-0de1-4b9c-99ee-c7ea9d413050"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Bankaddress]]></text>
+            </staticText>
+            <rectangle>
+                <reportElement x="14" y="523" width="130" height="20" uuid="068f07c0-653e-482e-8403-2fcd81dcdc63"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <staticText>
+                <reportElement x="28" y="524" width="100" height="30" uuid="af3e2724-a930-4a35-ad3e-4165b0332168">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8713de50-0ac3-44a2-a271-083565ab8b9f"/>
+                </reportElement>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Customer's Bank]]></text>
+            </staticText>
+            <rectangle>
+                <reportElement x="11" y="612" width="130" height="20" uuid="0051d0b0-5ee6-4a32-8d12-cf249b68eb2b"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <staticText>
+                <reportElement x="26" y="612" width="126" height="30" forecolor="#000000" uuid="7d4dc1f9-3900-4784-b5ce-690cb339abb0">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8713de50-0ac3-44a2-a271-083565ab8b9f"/>
+                </reportElement>
+                <textElement>
+                    <font size="12" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Beneficiary Bank]]></text>
+            </staticText>
+            <rectangle>
+                <reportElement x="11" y="640" width="130" height="20" uuid="a60026b4-4841-4147-afff-f2047f3b48da"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="213" y="640" width="130" height="20" uuid="97112da2-091a-4054-ba2e-b33ec4daf9bb"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="398" y="640" width="130" height="20" uuid="7885c7c2-f3e6-4978-8025-6c4ac3875698"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <staticText>
+                <reportElement x="409" y="643" width="100" height="30" uuid="254dad25-8522-4ece-aacb-3732099b54fb">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bfd6242c-0de1-4b9c-99ee-c7ea9d413050"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Bankaddress]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="21" y="643" width="100" height="30" uuid="48cbf4d4-c25a-4f1a-882c-961eadfffcd4">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f29b0546-923c-4c65-80bb-bf3dbdc88063"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[bankname]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="224" y="644" width="100" height="30" uuid="d8e46b9a-33ea-4892-9bb6-9dd69266b70f">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8713de50-0ac3-44a2-a271-083565ab8b9f"/>
+                </reportElement>
+                <textElement>
+                    <font size="11" isBold="true"/>
+                </textElement>
+                <text><![CDATA[codeBIC]]></text>
+            </staticText>
+            <rectangle>
+                <reportElement x="218" y="674" width="130" height="20" uuid="f086d84a-0a3b-4f66-8276-d5b6379613f0"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="403" y="674" width="137" height="20" uuid="c0b5d0b1-5ad2-479f-9971-85ff2fa04b13"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <rectangle>
+                <reportElement x="16" y="674" width="130" height="20" uuid="8652b43a-1cdf-46b5-bcf9-5424c3ea5da2"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+            <textField>
+                <reportElement x="23" y="677" width="137" height="30" uuid="8ddc74b2-8452-4c84-98ce-65eacc58f128">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="614ec375-b84b-4e20-9745-a608c0688657"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{clientbankname}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="228" y="679" width="132" height="30" uuid="3259b757-3a51-4479-bc47-d1da46ebccc4">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="68bde2c8-bcef-456f-8a6f-69038dd76c73"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{clientcodeBIC}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="409" y="679" width="100" height="30" uuid="347a0745-c896-4920-8fde-a9c58f02263e">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="720010e9-fdee-476c-8e07-6a4826980e9c"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{clientbankadaress}]]></textFieldExpression>
+            </textField>
+            <rectangle>
+                <reportElement x="0" y="30" width="555" height="20" backcolor="#FF6600" uuid="e8b3f3a6-c50c-4ce0-9973-209d44b42779"/>
+            </rectangle>
+            <staticText>
+                <reportElement x="5" y="27" width="100" height="24" forecolor="#FFFFFF" uuid="835e565c-5d86-4cae-b107-3cb5062ecd07"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="14"/>
+                </textElement>
+                <text><![CDATA[General Details]]></text>
+            </staticText>
+            <rectangle>
+                <reportElement x="0" y="-76" width="555" height="76" backcolor="#F5F0F0" uuid="1770b8af-0866-4abe-bc84-29e8467a61f5"/>
+                <graphicElement>
+                    <pen lineColor="#000000"/>
+                </graphicElement>
+            </rectangle>
+            <image>
+                <reportElement x="11" y="-60" width="130" height="86" uuid="51698a7e-73bb-400e-bb9a-961198e6ce07"/>
+                <imageExpression><![CDATA["C:/Users/HP/Desktop/Adria-PFA/adria-logo.png"]]></imageExpression>
+            </image>
+            <textField pattern="MMMMM dd, yyyy">
+                <reportElement x="425" y="-43" width="100" height="52" uuid="0ed3146e-6a3a-4cb7-aab9-0b17c6bfdf83"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+            </textField>
+            <staticText>
+                <reportElement x="421" y="-76" width="100" height="52" forecolor="#8A8888" uuid="30fa1ab5-4cf4-4e70-b139-162c3fc0097e"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="Century Schoolbook" size="18" isBold="true"/>
+                </textElement>
+                <text><![CDATA[REPORT]]></text>
+            </staticText>
+            <rectangle>
+                <reportElement x="0" y="-89" width="555" height="13" backcolor="#FF6600" uuid="c4e4ee25-0aae-477d-8b71-760c68b23130"/>
+            </rectangle>
+        </band>
+    </detail>
+</jasperReport>

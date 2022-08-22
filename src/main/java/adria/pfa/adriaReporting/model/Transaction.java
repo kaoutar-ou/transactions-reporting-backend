@@ -63,4 +63,45 @@ public class Transaction {
         this.client = client;
         this.beneficiaire = beneficiaire;
     }
+    public String getBeneficiairename(){
+        return this.beneficiaire.getNomComplet();
+    }
+
+    public Long getBeneficiaireaccount(){
+        return this.beneficiaire.getAccount();
+    }
+    public String getBeneficiaireaddress(){
+        return this.beneficiaire.getAddress();
+    }
+    public String getBeneficiairebankname(){
+        return this.beneficiaire.getBanque().getNom();
+    }
+    public String getBeneficiairecodeBIC(){
+        return this.beneficiaire.getBanque().getCodeBIC();
+    }
+    public String getBeneficiaireBankaddress(){
+        return this.beneficiaire.getBanque().getAddress();
+    }
+    public String getBeneficiairestatus(){
+        return this.beneficiaire.getStatus();
+    }
+    public String getClientname(){
+        return this.client.getNomComplet();
+    }
+    public String getClientaddress(){
+        return this.client.getAddress();
+    }
+    public Long getClientaccount(){
+        return this.client.getAccount();
+    }
+    public String getClientbankname(){
+        return this.client.getBanque().getNom();
+    }
+    public String getClientcodeBIC(){
+        return this.client.getBanque().getCodeBIC();
+    }
+    public String getClientbankadaress(){
+        return this.client.getBanque().getAddress();
+    }
+
 }
