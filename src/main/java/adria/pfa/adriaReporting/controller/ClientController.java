@@ -87,7 +87,7 @@ public class ClientController {
         HttpHeaders headers = new HttpHeaders();
 
         headers.set(HttpHeaders.CONTENT_DISPOSITION,"inline;filename=report.pdf");
-        JasperExportManager.exportReportToPdfFile(report,"C:\\Users\\HP\\Desktop\\Adria-PFA\\report.pdf");
+        JasperExportManager.exportReportToPdfFile(report,"report.pdf");
         return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF).body(data);
     }
     @GetMapping("/transactions/{id_client}/{ref}/pdfReport")

@@ -680,7 +680,7 @@
             </rectangle>
             <image>
                 <reportElement x="11" y="-60" width="130" height="86" uuid="51698a7e-73bb-400e-bb9a-961198e6ce07"/>
-                <imageExpression><![CDATA["C:/Users/HP/Desktop/Adria-PFA/adria-logo.png"]]></imageExpression>
+                <imageExpression><![CDATA["static/adria-logo.png"]]></imageExpression>
             </image>
             <textField pattern="MMMMM dd, yyyy">
                 <reportElement x="425" y="-43" width="100" height="52" uuid="0ed3146e-6a3a-4cb7-aab9-0b17c6bfdf83"/>
