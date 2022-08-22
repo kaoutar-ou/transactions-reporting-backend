@@ -8,7 +8,7 @@ import adria.pfa.adriaReporting.repository.BanqueRepository;
 import adria.pfa.adriaReporting.repository.BeneficiaireRepository;
 import adria.pfa.adriaReporting.repository.ClientRepository;
 import adria.pfa.adriaReporting.repository.TransactionRepository;
-import adria.pfa.adriaReporting.service.ClientService;
+import adria.pfa.adriaReporting.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -17,7 +17,6 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @SpringBootApplication
 public class AdriaReportingApplication {
@@ -39,7 +38,7 @@ public class AdriaReportingApplication {
     private TransactionRepository transactionRepository;
 
     @Bean
-    CommandLineRunner run(ClientService clientService) {
+    CommandLineRunner run(TransactionService transactionService) {
         return args -> {
             Banque banque1 = banqueRepository.save(new Banque(null, "banque1", "codeBIC1", "address1", new ArrayList<Client>(), new ArrayList<Beneficiaire>()));
             Banque banque2 = banqueRepository.save(new Banque(null, "banque2", "codeBIC2", "address2", new ArrayList<Client>(), new ArrayList<Beneficiaire>()));

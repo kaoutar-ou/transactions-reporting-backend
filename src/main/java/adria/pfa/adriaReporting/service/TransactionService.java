@@ -8,17 +8,16 @@ import adria.pfa.adriaReporting.model.Client;
 import adria.pfa.adriaReporting.model.Transaction;
 import adria.pfa.adriaReporting.repository.BeneficiaireRepository;
 import adria.pfa.adriaReporting.repository.ClientRepository;
-import adria.pfa.adriaReporting.repository.CustomTransactionRepository;
+import adria.pfa.adriaReporting.repository.SearchTransactionRepository;
 import adria.pfa.adriaReporting.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.ref.Reference;
 import java.util.Date;
 import java.util.List;
 
 @Service
-public class ClientService {
+public class TransactionService {
 
     @Autowired
     private ClientRepository clientRepository;
@@ -30,7 +29,7 @@ public class ClientService {
     private TransactionRepository transactionRepository;
 
     @Autowired
-    private CustomTransactionRepository customTransactionRepository;
+    private SearchTransactionRepository searchTransactionRepository;
 
     public List<Transaction> listTransactions(Long client_id) {
         Client client = clientRepository.findById(client_id).get();
@@ -73,9 +72,9 @@ public class ClientService {
 //
 //    }
 
-    public List<Transaction> searchTransactionsBy(Long client_id, TransactionDao transaction) {
+    public List<Transaction> searchTransactionsByClientAndCriteria(Long client_id, TransactionDao transaction) {
         Client client = clientRepository.findById(client_id).get();
-        return customTransactionRepository.searchTransactionsBy(client, transaction);
+        return searchTransactionRepository.searchTransactionsByClientAndCriteria(client, transaction);
     }
 
     public Transaction getTransactionByID(Long id) {

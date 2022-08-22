@@ -6,6 +6,6 @@ import adria.pfa.adriaReporting.model.Transaction;
 
 import java.util.List;
 
-public interface CustomTransactionRepository {
-    List<Transaction> searchTransactionsBy(Client client, TransactionDao transactionDao);
+public interface SearchTransactionRepository {
+    List<Transaction> searchTransactionsByClientAndCriteria(Client client, TransactionDao transactionDao);
 }

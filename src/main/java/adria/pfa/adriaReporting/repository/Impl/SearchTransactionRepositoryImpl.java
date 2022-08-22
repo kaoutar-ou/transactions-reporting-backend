@@ -3,7 +3,7 @@ package adria.pfa.adriaReporting.repository.Impl;
 import adria.pfa.adriaReporting.dao.TransactionDao;
 import adria.pfa.adriaReporting.model.Client;
 import adria.pfa.adriaReporting.model.Transaction;
-import adria.pfa.adriaReporting.repository.CustomTransactionRepository;
+import adria.pfa.adriaReporting.repository.SearchTransactionRepository;
 import adria.pfa.adriaReporting.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,11 +14,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Repository
-public class CustomTransactionRepositoryImpl implements CustomTransactionRepository {
+public class SearchTransactionRepositoryImpl implements SearchTransactionRepository {
 
     @Autowired
     private EntityManager entityManager;
@@ -27,7 +26,7 @@ public class CustomTransactionRepositoryImpl implements CustomTransactionReposit
     private TransactionRepository transactionRepository;
 
     @Override
-    public List<Transaction> searchTransactionsBy(Client client, TransactionDao transaction) {
+    public List<Transaction> searchTransactionsByClientAndCriteria(Client client, TransactionDao transaction) {
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Transaction> criteriaQuery = criteriaBuilder.createQuery(Transaction.class);
