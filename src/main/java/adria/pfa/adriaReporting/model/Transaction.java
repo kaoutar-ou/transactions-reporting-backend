@@ -41,6 +41,21 @@ public class Transaction {
     @CreationTimestamp
     private Timestamp dateCreation;
 
+//    @Transient
+//    private String dateExpirationValue;
+//
+//    @Transient
+//    private String dateCreationValue;
+
+    public String getDateCreationValue() {
+//        this.dateCreationValue = this.dateCreation.toString().substring(0,10);
+        return this.dateCreation.toString().substring(0,10);
+    }
+
+    public String getDateExpirationValue() {
+        return this.dateExpiration.toString().substring(0,10);
+    }
+
     @OneToMany(mappedBy = "transaction", fetch = FetchType.EAGER)
     private Collection<DocumentJoint> documentJoints = new ArrayList<>();
 

@@ -1,7 +1,17 @@
 package adria.pfa.adriaReporting.enumeration;
 
 public enum TypePayement {
-    MIXTE,
-    PAYEMENT_DIFFERE,
-    PAYEMENT_CONTRE
+    MIXTE("Mixte"),
+    PAYEMENT_DIFFERE("Payement différé"),
+    PAYEMENT_CONTRE("Payement contre");
+
+    private final String value;
+
+    private TypePayement(String value) {
+        this.value = value;
+    }
+
+    public String getValue() {
+        return value;
+    }
 }

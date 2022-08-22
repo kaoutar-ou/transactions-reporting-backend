@@ -77,4 +77,14 @@ public class ClientService {
         Client client = clientRepository.findById(client_id).get();
         return customTransactionRepository.searchTransactionsBy(client, transaction);
     }
+
+    public Transaction getTransactionByID(Long id) {
+        Transaction transaction = transactionRepository.findById(id).get();
+        return transaction;
+    }
+
+    public Client getClientById(Long id) {
+        Client client = clientRepository.findById(id).get();
+        return client;
+    }
 }
