@@ -6,13 +6,18 @@ import adria.pfa.adriaReporting.model.Transaction;
 import adria.pfa.adriaReporting.repository.SearchTransactionRepository;
 import adria.pfa.adriaReporting.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import org.springframework.data.domain.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +37,8 @@ public class SearchTransactionRepositoryImpl implements SearchTransactionReposit
         CriteriaQuery<Transaction> criteriaQuery = criteriaBuilder.createQuery(Transaction.class);
         Root<Transaction> root = criteriaQuery.from(Transaction.class);
 
+        System.out.println("transaction");
+        System.out.println(transaction);
         if (transaction != null) {
             List<Predicate> predicates = new ArrayList<Predicate>();
             predicates.add(criteriaBuilder.equal(root.get("client"), client));
@@ -57,4 +64,54 @@ public class SearchTransactionRepositoryImpl implements SearchTransactionReposit
         }
         return transactionRepository.findAllByClient(client);
     }
+
+//    @Override
+//    public Page<Transaction> searchTransactionsByClientAndCriteria(Client client, TransactionDao transaction, Pageable page) {
+//
+//        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+//        CriteriaQuery<Transaction> criteriaQuery = criteriaBuilder.createQuery(Transaction.class);
+//        Root<Transaction> root = criteriaQuery.from(Transaction.class);
+//
+//        if (transaction != null) {
+//
+//            List<Predicate> predicates = new ArrayList<Predicate>();
+//            predicates.add(criteriaBuilder.equal(root.get("client"), client));
+//
+//            if (transaction.getReference() != null && !transaction.getReference().isEmpty()) {
+//                predicates.add(criteriaBuilder.like(root.get("reference"), "%"+transaction.getReference()+"%"));
+//            }
+//            if (transaction.getTypeTransaction() != null) {
+//                predicates.add(criteriaBuilder.equal(root.get("typeTransaction"), transaction.getTypeTransaction()));
+//            }
+//            if (transaction.getTypeProduit() != null) {
+//                predicates.add(criteriaBuilder.equal(root.get("typeProduit"), transaction.getTypeProduit()));
+//            }
+//            if (transaction.getBeneficiaire_id() != null) {
+//                predicates.add(criteriaBuilder.equal(root.get("beneficiaire").get("id"), transaction.getBeneficiaire_id()));
+//            }
+//            if (transaction.getDateCreation() != null) {
+//                predicates.add(criteriaBuilder.like(root.get("dateCreation").as(String.class), transaction.getDateCreation().toString().substring(0,10) + "%"));
+//            }
+//            if (transaction.getDateExpiration() != null) {
+//                predicates.add(criteriaBuilder.like(root.get("dateExpiration").as(String.class), transaction.getDateExpiration().toString().substring(0,10) + "%"));
+//            }
+//
+////            Predicate[] predicatesArray = new Predicate[predicates.size()];
+////            criteriaQuery.where(predicatesArray);
+//            criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()]));
+//
+//            TypedQuery<Transaction> typedQuery = entityManager.createQuery(criteriaQuery);
+//
+//            long size = typedQuery.getResultList().size();
+//
+//            Page<Transaction> transactionPage = new PageImpl<>(entityManager.createQuery(criteriaQuery).getResultList(), page, size);
+//
+//            System.out.println("typedQuery.getResultList()");
+//            System.out.println(transactionPage.getContent());
+//            return transactionPage;
+//        }
+//        System.out.println("transactionRepository.findByClient(client, page))");
+////        System.out.println(typedQuery.getResultList());
+//        return transactionRepository.findByClient(client, page);
+//    }
 }

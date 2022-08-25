@@ -1,7 +1,10 @@
 package adria.pfa.adriaReporting.controller;
 
 import adria.pfa.adriaReporting.dao.TransactionDao;
+import adria.pfa.adriaReporting.model.Client;
 import adria.pfa.adriaReporting.model.Transaction;
+import adria.pfa.adriaReporting.repository.ClientRepository;
+import adria.pfa.adriaReporting.repository.TransactionRepository;
 import adria.pfa.adriaReporting.service.TransactionService;
 
 import adria.pfa.adriaReporting.service.ReportService;
@@ -10,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -38,10 +43,26 @@ public class TransactionController {
     @Autowired
     private ReportService reportService;
 
+    @Autowired
+    private TransactionRepository transactionRepository;
+
+    @Autowired
+    private ClientRepository clientRepository;
+
+//    @GetMapping("/{idClient}")
+//    public ResponseEntity<List<Transaction>> listTransactions(@PathVariable Long idClient) {
+//        List<Transaction> transactions = transactionService.listTransactions(idClient);
+//        return  ResponseEntity.ok().body(transactions);
+//    }
+
     @GetMapping("/{idClient}")
-    public ResponseEntity<List<Transaction>> listTransactions(@PathVariable Long idClient) {
-        List<Transaction> transactions = transactionService.listTransactions(idClient);
-        return  ResponseEntity.ok().body(transactions);
+    public ResponseEntity<Page<Transaction>> listTransactions(@PathVariable Long idClient,
+                                                              @RequestParam(name="page", defaultValue="0") int page,
+                                                              @RequestParam(name="size", defaultValue="5") int size) {
+        Client client = clientRepository.findById(idClient).get();
+        Page<Transaction> pageTransaction = transactionRepository.findByClient(client, PageRequest.of(page, size));
+        System.out.println("all");
+        return  ResponseEntity.ok().body(pageTransaction);
     }
 
     @GetMapping("/{idClient}/beneficiaire/{idBeneficiaire}")
@@ -51,10 +72,31 @@ public class TransactionController {
     }
 
     @PostMapping("/search/{idClient}")
-    public ResponseEntity<List<Transaction>> searchTransactionsBy(@PathVariable Long idClient, @RequestBody TransactionDao transaction) {
+    public ResponseEntity<Map<String, Object>> searchTransactionsBy(@PathVariable Long idClient,
+                                                                  @RequestBody TransactionDao transaction,
+                                                                  @RequestParam(name="page", defaultValue="0") int page,
+                                                                  @RequestParam(name="size", defaultValue="5") int size) {
+        System.out.println(page);
+        System.out.println(size);
+        int lastIndex = page * size;
+        int firstIndex = lastIndex - size;
         List<Transaction> transactions = transactionService.searchTransactionsByClientAndCriteria(idClient, transaction);
-        return  ResponseEntity.ok().body(transactions);
+        List<Transaction> pageTransactions = transactions.subList(firstIndex, lastIndex);
+        Map<String, Object> data = new HashMap<>();
+        data.put("content", pageTransactions);
+        data.put("totalPages", transactions.size());
+        return  ResponseEntity.ok().body(data);
     }
+
+//    @PostMapping("/search/{idClient}")
+//    public ResponseEntity<Page<Transaction>> searchTransactionsBy(@PathVariable Long idClient,
+//                                                                  @RequestBody TransactionDao transaction,
+//                                                                  @RequestParam(name="page", defaultValue="0") int page,
+//                                                                  @RequestParam(name="size", defaultValue="5") int size) {
+//        Page<Transaction> transactions = transactionService.searchTransactionsByClientAndCriteria(idClient, transaction, PageRequest.of(page, size));
+//        return  ResponseEntity.ok().body(transactions);
+//    }
+
     @GetMapping("/{idClient}/report/{ref}")
     public ResponseEntity<byte[]> getReportPDF(@PathVariable Long idClient,@PathVariable String ref) throws Exception, JRException {
 

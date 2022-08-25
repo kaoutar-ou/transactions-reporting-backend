@@ -11,8 +11,10 @@ import adria.pfa.adriaReporting.repository.ClientRepository;
 import adria.pfa.adriaReporting.repository.SearchTransactionRepository;
 import adria.pfa.adriaReporting.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import org.springframework.data.domain.Pageable;
 import java.util.Date;
 import java.util.List;
 
@@ -76,6 +78,11 @@ public class TransactionService {
         Client client = clientRepository.findById(client_id).get();
         return searchTransactionRepository.searchTransactionsByClientAndCriteria(client, transaction);
     }
+
+//    public Page<Transaction> searchTransactionsByClientAndCriteria(Long client_id, TransactionDao transaction, Pageable page) {
+//        Client client = clientRepository.findById(client_id).get();
+//        return searchTransactionRepository.searchTransactionsByClientAndCriteria(client, transaction, page);
+//    }
 
     public Transaction getTransactionByID(Long id) {
         Transaction transaction = transactionRepository.findById(id).get();
