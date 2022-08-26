@@ -13,8 +13,12 @@ import java.util.Set;
 @CrossOrigin(origins = "*", maxAge = 3700)
 public class BeneficiaireController {
 
-    @Autowired
     private BeneficiaireService beneficiaireService;
+
+    @Autowired
+    public void setBeneficiaireService(BeneficiaireService beneficiaireService) {
+        this.beneficiaireService = beneficiaireService;
+    }
 
     @GetMapping("/{idClient}")
     public ResponseEntity<Set<Beneficiaire>> listBenefificiaires(@PathVariable Long idClient) {
