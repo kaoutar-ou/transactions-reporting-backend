@@ -34,7 +34,6 @@ public class Transaction {
     @Column(name = "typeProduit")
     private TypeProduit typeProduit;
     @Column(name = "dateExpiration")
-//    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateExpiration;
     @Column(name = "montant")
     private double montant;
