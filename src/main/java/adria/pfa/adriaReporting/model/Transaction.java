@@ -3,7 +3,6 @@ package adria.pfa.adriaReporting.model;
 import adria.pfa.adriaReporting.enumeration.TypePayement;
 import adria.pfa.adriaReporting.enumeration.TypeProduit;
 import adria.pfa.adriaReporting.enumeration.TypeTransaction;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -43,14 +42,7 @@ public class Transaction {
     @CreationTimestamp
     private Timestamp dateCreation;
 
-//    @Transient
-//    private String dateExpirationValue;
-//
-//    @Transient
-//    private String dateCreationValue;
-
     public String getDateCreationValue() {
-//        this.dateCreationValue = this.dateCreation.toString().substring(0,10);
         return this.dateCreation.toString().substring(0,10);
     }
 

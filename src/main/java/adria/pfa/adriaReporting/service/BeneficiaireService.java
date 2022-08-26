@@ -11,7 +11,6 @@ import java.util.Set;
 
 @Service
 public class BeneficiaireService {
-
     @Autowired
     private TransactionService transactionService;
 

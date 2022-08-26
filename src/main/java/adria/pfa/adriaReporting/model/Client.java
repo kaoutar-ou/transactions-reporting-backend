@@ -1,9 +1,9 @@
 package adria.pfa.adriaReporting.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -14,9 +14,6 @@ import java.util.Collection;
 @AllArgsConstructor
 @Data
 public class Client extends User {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-//    private Long id_User;
     @Column(name = "nomComplet")
     private String nomComplet;
     @Column(name = "address")
@@ -26,11 +23,9 @@ public class Client extends User {
 
     @ManyToOne
     @JoinColumn(name = "banque_id")
-//    @JsonBackReference
     private Banque banque;
 
     @JsonIgnore
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
-//    @JsonManagedReference
     private Collection<Transaction> transactions = new ArrayList<>();
 }

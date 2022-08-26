@@ -7,7 +7,6 @@ import com.itextpdf.html2pdf.HtmlConverter;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 import org.thymeleaf.TemplateEngine;
@@ -46,16 +45,12 @@ public class ReportService {
         context.setVariables(data);
 
         String templateName = "report-template";
-//        String pdfFileName = "report.pdf";
+
         String reportHtmlContent = templateEngine.process(templateName, context);
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
         ConverterProperties converterProperties = new ConverterProperties();
-
-//        converterProperties.setBaseUri("http://localhost:8080");
-
-//        HtmlConverter.convertToPdf(reportHtmlContent, byteArrayOutputStream, converterProperties);
 
         HtmlConverter.convertToPdf(reportHtmlContent, byteArrayOutputStream);
 
@@ -83,9 +78,6 @@ public class ReportService {
 
         ConverterProperties converterProperties = new ConverterProperties();
 
-//        converterProperties.setBaseUri("http://localhost:8080");
-//        FileOutputStream fileOutputStream = new FileOutputStream(templateName);
-
         HtmlConverter.convertToPdf(reportHtmlContent, byteArrayOutputStream, converterProperties);
 
 
@@ -96,7 +88,6 @@ public class ReportService {
     public byte[] getReportPDF(Long idClient, String ref) throws FileNotFoundException, JRException {
         List<Transaction> transactions = transactionService.rechercheTransactionsParReference(idClient,ref);
         JRBeanCollectionDataSource beanCollectionDataSource =new JRBeanCollectionDataSource(transactions);
-        //JasperReport compileReport = JasperCompileManager.compileReport(new FileInputStream("src/main/resources/jasperReport.jrxml"));
         File file = ResourceUtils.getFile("classpath:jasperReport.jrxml");
         JasperReport compileReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         Map<String,Object> parameters =new HashMap<>();
@@ -108,13 +99,11 @@ public class ReportService {
 
     public void downloadReportPDF(Long idClient, String ref, HttpServletResponse response) throws IOException, JRException {
         List<Transaction> transactions = transactionService.rechercheTransactionsParReference(idClient,ref);
-        //InputStream jasperStream = (InputStream) this.getClass().getResourceAsStream("/jasperReport.jrxml");
         File file = ResourceUtils.getFile("classpath:jasperReport.jrxml");
         JasperReport compileReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         Map<String,Object> params = new HashMap<>();
         params.put("name","name");
         final JRBeanCollectionDataSource source = new JRBeanCollectionDataSource(transactions);
-        //JasperReport jasperReport = (JasperReport) JRLoader.loadObject(file);
         JasperPrint jasperPrint = JasperFillManager.fillReport(compileReport,params,source);
         response.setContentType("application/x-pdf");
         response.setHeader("Content-disposition","inline;filename=report.pdf");

@@ -13,7 +13,6 @@ import java.util.Date;
 import java.util.List;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
-//    Transaction findByReference(String reference);
     List<Transaction> findAllByDateCreation(Date date);
     List<Transaction> findAllByClient(Client client);
     List<Transaction> findAllByBeneficiaire(Beneficiaire beneficiaire);
@@ -23,8 +22,6 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     List<Transaction> findAllByClientAndReference(Client client, String reference);
     List<Transaction> findAllByClientAndTypeProduit(Client client, TypeProduit typeProduit);
     List<Transaction> findAllByClientAndDateCreation(Client client, Date dateCreation);
-
     public Page<Transaction> findByClient(Client client, Pageable pageable);
 
-//    List<Transaction> searchAllByBeneficiaireOrMontant(Beneficiaire b, double m);
 }
