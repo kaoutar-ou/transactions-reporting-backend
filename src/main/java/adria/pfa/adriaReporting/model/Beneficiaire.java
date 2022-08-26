@@ -22,7 +22,7 @@ public class Beneficiaire extends User {
     private String address;
     @Column(name = "status")
     private String status;
-    @Column(name = "account")
+    @Column(name = "account", unique = true)
     private Long account;
 
     @ManyToOne

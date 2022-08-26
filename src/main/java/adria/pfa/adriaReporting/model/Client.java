@@ -18,7 +18,7 @@ public class Client extends User {
     private String nomComplet;
     @Column(name = "address")
     private String address;
-    @Column(name = "account")
+    @Column(name = "account", unique = true)
     private Long account;
 
     @ManyToOne

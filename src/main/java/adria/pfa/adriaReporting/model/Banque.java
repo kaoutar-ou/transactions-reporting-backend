@@ -20,7 +20,7 @@ public class Banque {
     private Long id;
     @Column(name = "nom")
     private String nom;
-    @Column(name = "codeBIC")
+    @Column(name = "codeBIC", unique = true)
     private String codeBIC;
     @Column(name = "address")
     private String address;

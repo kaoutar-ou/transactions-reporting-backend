@@ -22,7 +22,7 @@ public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    @Column(name = "reference")
+    @Column(name = "reference", unique = true, nullable = false)
     private String reference;
     @Enumerated(EnumType.STRING)
     @Column(name = "typeTransaction")
@@ -48,6 +48,16 @@ public class Transaction {
 
     public String getDateExpirationValue() {
         return this.dateExpiration.toString().substring(0,10);
+    }
+
+    public String getTypePayementValue() {
+        return this.typePayement.getValue();
+    }
+    public String getTypeTransactionValue() {
+        return this.typeTransaction.getValue();
+    }
+    public String getTypeProduitValue() {
+        return this.typeProduit.getValue();
     }
 
     @OneToMany(mappedBy = "transaction", fetch = FetchType.EAGER)

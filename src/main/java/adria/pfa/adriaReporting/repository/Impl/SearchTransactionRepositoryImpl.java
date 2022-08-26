@@ -72,7 +72,6 @@ public class SearchTransactionRepositoryImpl implements SearchTransactionReposit
                 return new PageImpl<>(new ArrayList<>(), page, transactionList.size());
             return new PageImpl<>(transactionList.subList(start, end), page, transactionList.size());
         }
-        System.out.println("transactionRepository.findByClient(client, page))");
         return transactionRepository.findByClient(client, page);
     }
 }
