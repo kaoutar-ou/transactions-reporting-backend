@@ -3,6 +3,7 @@ package adria.pfa.adriaReporting.dao;
 import adria.pfa.adriaReporting.enumeration.TypePayement;
 import adria.pfa.adriaReporting.enumeration.TypeProduit;
 import adria.pfa.adriaReporting.enumeration.TypeTransaction;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,7 @@ public class TransactionDao {
     private TypeTransaction typeTransaction;
     private TypePayement typePayement;
     private TypeProduit typeProduit;
-    private Date dateExpiration;
+    private Timestamp dateExpiration;
     private double montant;
     private Timestamp dateCreation;
     private Long beneficiaire_id;

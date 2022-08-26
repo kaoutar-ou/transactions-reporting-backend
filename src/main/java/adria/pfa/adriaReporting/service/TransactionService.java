@@ -74,15 +74,15 @@ public class TransactionService {
 //
 //    }
 
-    public List<Transaction> searchTransactionsByClientAndCriteria(Long client_id, TransactionDao transaction) {
-        Client client = clientRepository.findById(client_id).get();
-        return searchTransactionRepository.searchTransactionsByClientAndCriteria(client, transaction);
-    }
-
-//    public Page<Transaction> searchTransactionsByClientAndCriteria(Long client_id, TransactionDao transaction, Pageable page) {
+//    public List<Transaction> searchTransactionsByClientAndCriteria(Long client_id, TransactionDao transaction) {
 //        Client client = clientRepository.findById(client_id).get();
-//        return searchTransactionRepository.searchTransactionsByClientAndCriteria(client, transaction, page);
+//        return searchTransactionRepository.searchTransactionsByClientAndCriteria(client, transaction);
 //    }
+
+    public Page<Transaction> searchTransactionsByClientAndCriteria(Long client_id, TransactionDao transaction, Pageable page) {
+        Client client = clientRepository.findById(client_id).get();
+        return searchTransactionRepository.searchTransactionsByClientAndCriteria(client, transaction, page);
+    }
 
     public Transaction getTransactionByID(Long id) {
         Transaction transaction = transactionRepository.findById(id).get();

@@ -3,6 +3,7 @@ package adria.pfa.adriaReporting.model;
 import adria.pfa.adriaReporting.enumeration.TypePayement;
 import adria.pfa.adriaReporting.enumeration.TypeProduit;
 import adria.pfa.adriaReporting.enumeration.TypeTransaction;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -34,6 +35,7 @@ public class Transaction {
     @Column(name = "typeProduit")
     private TypeProduit typeProduit;
     @Column(name = "dateExpiration")
+//    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateExpiration;
     @Column(name = "montant")
     private double montant;

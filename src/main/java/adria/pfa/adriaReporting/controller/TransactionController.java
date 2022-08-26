@@ -71,31 +71,40 @@ public class TransactionController {
         return ResponseEntity.ok().body(transactions);
     }
 
-    @PostMapping("/search/{idClient}")
-    public ResponseEntity<Map<String, Object>> searchTransactionsBy(@PathVariable Long idClient,
-                                                                  @RequestBody TransactionDao transaction,
-                                                                  @RequestParam(name="page", defaultValue="0") int page,
-                                                                  @RequestParam(name="size", defaultValue="5") int size) {
-        System.out.println(page);
-        System.out.println(size);
-        int lastIndex = page * size;
-        int firstIndex = lastIndex - size;
-        List<Transaction> transactions = transactionService.searchTransactionsByClientAndCriteria(idClient, transaction);
-        List<Transaction> pageTransactions = transactions.subList(firstIndex, lastIndex);
-        Map<String, Object> data = new HashMap<>();
-        data.put("content", pageTransactions);
-        data.put("totalPages", transactions.size());
-        return  ResponseEntity.ok().body(data);
-    }
-
 //    @PostMapping("/search/{idClient}")
-//    public ResponseEntity<Page<Transaction>> searchTransactionsBy(@PathVariable Long idClient,
+//    public ResponseEntity<Map<String, Object>> searchTransactionsBy(@PathVariable Long idClient,
 //                                                                  @RequestBody TransactionDao transaction,
 //                                                                  @RequestParam(name="page", defaultValue="0") int page,
 //                                                                  @RequestParam(name="size", defaultValue="5") int size) {
-//        Page<Transaction> transactions = transactionService.searchTransactionsByClientAndCriteria(idClient, transaction, PageRequest.of(page, size));
-//        return  ResponseEntity.ok().body(transactions);
+//        System.out.println(page);
+//        System.out.println(size);
+//        List<Transaction> transactions = transactionService.searchTransactionsByClientAndCriteria(idClient, transaction);
+//        int lastIndex = (page+1) * size;
+//        int firstIndex = lastIndex - size;
+//        if (transactions.size()-1 < lastIndex) lastIndex = transactions.size();
+//
+//        List<Transaction> pageTransactions = transactions.subList(firstIndex, lastIndex);
+//        Map<String, Object> data = new HashMap<>();
+//        data.put("content", pageTransactions);
+//        data.put("totalPages", (transactions.size() + 1) / size);
+//        System.out.println("data");
+//
+////        System.out.println(data.get("content"));
+//        System.out.println(data.get("totalPages"));
+//        System.out.println(firstIndex);
+//        System.out.println(lastIndex);
+//
+//        return  ResponseEntity.ok().body(data);
 //    }
+
+    @PostMapping("/search/{idClient}")
+    public ResponseEntity<Page<Transaction>> searchTransactionsBy(@PathVariable Long idClient,
+                                                                  @RequestBody(required = false) TransactionDao transaction,
+                                                                  @RequestParam(name="page", defaultValue="0") int page,
+                                                                  @RequestParam(name="size", defaultValue="5") int size) {
+        Page<Transaction> transactions = transactionService.searchTransactionsByClientAndCriteria(idClient, transaction, PageRequest.of(page, size));
+        return  ResponseEntity.ok().body(transactions);
+    }
 
     @GetMapping("/{idClient}/report/{ref}")
     public ResponseEntity<byte[]> getReportPDF(@PathVariable Long idClient,@PathVariable String ref) throws Exception, JRException {
