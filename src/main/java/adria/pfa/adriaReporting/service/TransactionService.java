@@ -1,6 +1,6 @@
 package adria.pfa.adriaReporting.service;
 
-import adria.pfa.adriaReporting.dao.TransactionDao;
+import adria.pfa.adriaReporting.dto.TransactionDto;
 import adria.pfa.adriaReporting.enumeration.TypeProduit;
 import adria.pfa.adriaReporting.enumeration.TypeTransaction;
 import adria.pfa.adriaReporting.model.Beneficiaire;
@@ -95,7 +95,7 @@ public class TransactionService {
         return transactions;
     }
 
-    public Page<Transaction> searchTransactionsByClientAndCriteria(Long client_id, TransactionDao transaction, Pageable page) {
+    public Page<Transaction> searchTransactionsByClientAndCriteria(Long client_id, TransactionDto transaction, Pageable page) {
         Client client = clientRepository.findById(client_id).get();
         return searchTransactionRepository.searchTransactionsByClientAndCriteria(client, transaction, page);
     }
@@ -105,8 +105,4 @@ public class TransactionService {
         return transaction;
     }
 
-    public Client getClientById(Long id) {
-        Client client = clientRepository.findById(id).get();
-        return client;
-    }
 }

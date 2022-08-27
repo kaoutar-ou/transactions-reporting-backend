@@ -1,6 +1,6 @@
 package adria.pfa.adriaReporting.repository.Impl;
 
-import adria.pfa.adriaReporting.dao.TransactionDao;
+import adria.pfa.adriaReporting.dto.TransactionDto;
 import adria.pfa.adriaReporting.model.Client;
 import adria.pfa.adriaReporting.model.Transaction;
 import adria.pfa.adriaReporting.repository.SearchTransactionRepository;
@@ -38,7 +38,7 @@ public class SearchTransactionRepositoryImpl implements SearchTransactionReposit
     }
 
     @Override
-    public Page<Transaction> searchTransactionsByClientAndCriteria(Client client, TransactionDao transaction, Pageable page) {
+    public Page<Transaction> searchTransactionsByClientAndCriteria(Client client, TransactionDto transaction, Pageable page) {
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Transaction> criteriaQuery = criteriaBuilder.createQuery(Transaction.class);

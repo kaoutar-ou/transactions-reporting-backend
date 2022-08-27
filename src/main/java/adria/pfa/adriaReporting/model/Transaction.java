@@ -3,6 +3,7 @@ package adria.pfa.adriaReporting.model;
 import adria.pfa.adriaReporting.enumeration.TypePayement;
 import adria.pfa.adriaReporting.enumeration.TypeProduit;
 import adria.pfa.adriaReporting.enumeration.TypeTransaction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -59,6 +60,7 @@ public class Transaction {
         return this.typeProduit.getValue();
     }
 
+    @JsonIgnore
     @OneToMany(mappedBy = "transaction", fetch = FetchType.EAGER)
     private Collection<DocumentJoint> documentJoints = new ArrayList<>();
 
