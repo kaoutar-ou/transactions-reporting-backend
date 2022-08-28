@@ -26,19 +26,35 @@ public class AdriaReportingApplication {
         SpringApplication.run(AdriaReportingApplication.class, args);
     }
 
-    @Autowired
     private BanqueRepository banqueRepository;
 
     @Autowired
+    public void setBanqueRepository(BanqueRepository banqueRepository) {
+        this.banqueRepository = banqueRepository;
+    }
+
     private ClientRepository clientRepository;
 
     @Autowired
+    public void setClientRepository(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
+
     private BeneficiaireRepository beneficiaireRepository;
 
     @Autowired
+    public BeneficiaireRepository getBeneficiaireRepository() {
+        return beneficiaireRepository;
+    }
+
     private TransactionRepository transactionRepository;
 
-//    @Bean
+    @Autowired
+    public void setTransactionRepository(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
+    }
+
+    //    @Bean
 //    CommandLineRunner run(TransactionService transactionService) {
 //        return args -> {
 //            Banque banque1 = banqueRepository.save(new Banque(null, "banque1", "codeBIC1", "address1", new ArrayList<Client>(), new ArrayList<Beneficiaire>()));
