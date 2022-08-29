@@ -31,7 +31,6 @@ public class DocumentJointController {
     @PostMapping("/upload")
     public ResponseEntity<MessageResponse> saveDocumentJoint(@RequestBody MultipartFile document,
                                                              @RequestParam("idTransaction") Long idTransaction) throws IOException {
-        System.out.println("upload");
         String message = "";
         try {
             documentJointService.saveDocumentJoint(document, idTransaction);
