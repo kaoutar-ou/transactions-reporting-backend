@@ -1,4 +1,4 @@
-package adria.pfa.adriaReporting.dto;
+package adria.pfa.adriaReporting.dao;
 
 import adria.pfa.adriaReporting.enumeration.TypePayement;
 import adria.pfa.adriaReporting.enumeration.TypeProduit;
@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TransactionDto {
+public class TransactionDao {
     private Long id;
     private String reference;
     private TypeTransaction typeTransaction;

@@ -1,6 +1,6 @@
 package adria.pfa.adriaReporting.controller;
 
-import adria.pfa.adriaReporting.dto.TransactionDto;
+import adria.pfa.adriaReporting.dao.TransactionDao;
 import adria.pfa.adriaReporting.model.Transaction;
 import adria.pfa.adriaReporting.service.ClientService;
 import adria.pfa.adriaReporting.service.ReportService;
@@ -67,7 +67,7 @@ public class TransactionController {
 
     @PostMapping("/search/{idClient}")
     public ResponseEntity<Page<Transaction>> searchTransactionsByCriteria(@PathVariable Long idClient,
-                                                                  @RequestBody(required = false) TransactionDto transaction,
+                                                                  @RequestBody(required = false) TransactionDao transaction,
                                                                   @RequestParam(name="page", defaultValue="0") int page,
                                                                   @RequestParam(name="size", defaultValue="5") int size) {
         Page<Transaction> transactions = transactionService.searchTransactionsByClientAndCriteria(idClient, transaction, PageRequest.of(page, size));
