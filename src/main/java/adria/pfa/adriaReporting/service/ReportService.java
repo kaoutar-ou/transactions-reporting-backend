@@ -65,34 +65,6 @@ public class ReportService {
         return byteArrayOutputStream.toByteArray();
     }
 
-    public byte[] getPdfReportAll(Long id_client) {
-        Map<String, Object> data = new HashMap<>();
-        List<Transaction> transactions = transactionService.listTransactions(id_client);
-        data.put("transactions", transactions);
-
-        Client client = transactionService.getClientById(id_client);
-        data.put("client", client);
-
-        data.put("date", LocalDate.now());
-
-        Context context = new Context();
-        context.setVariables(data);
-
-        String templateName = "report-all-template";
-        String pdfFileName = "report.pdf";
-        String reportHtmlContent = templateEngine.process(templateName, context);
-
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-
-        ConverterProperties converterProperties = new ConverterProperties();
-
-        HtmlConverter.convertToPdf(reportHtmlContent, byteArrayOutputStream, converterProperties);
-
-
-        HtmlConverter.convertToPdf(reportHtmlContent, byteArrayOutputStream);
-        return byteArrayOutputStream.toByteArray();
-    }
-
     public byte[] getReportPDF(Long idClient, String ref) throws FileNotFoundException, JRException {
         List<Transaction> transactions = transactionService.rechercheTransactionsParReference(idClient,ref);
         JRBeanCollectionDataSource beanCollectionDataSource =new JRBeanCollectionDataSource(transactions);

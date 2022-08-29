@@ -101,15 +101,4 @@ public class TransactionController {
                 .body(bytes);
     }
 
-    @GetMapping("/report/{idClient}")
-    public ResponseEntity<?> getPdfReportAll(HttpServletRequest request, HttpServletResponse response, @PathVariable Long idClient) throws IOException {
-
-        byte[] bytes = reportService.getPdfReportAll(idClient);
-
-        return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_PDF)
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=rapport.pdf")
-                .body(bytes);
-
-    }
 }

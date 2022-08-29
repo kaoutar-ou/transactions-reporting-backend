@@ -23,11 +23,19 @@ import java.util.List;
 @Repository
 public class SearchTransactionRepositoryImpl implements SearchTransactionRepository {
 
-    @Autowired
     private EntityManager entityManager;
 
-    @Autowired
     private TransactionRepository transactionRepository;
+
+    @Autowired
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    @Autowired
+    public void setTransactionRepository(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
+    }
 
     @Override
     public Page<Transaction> searchTransactionsByClientAndCriteria(Client client, TransactionDao transaction, Pageable page) {

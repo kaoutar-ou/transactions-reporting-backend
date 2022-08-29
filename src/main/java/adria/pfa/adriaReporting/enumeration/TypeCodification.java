@@ -1,8 +1,8 @@
 package adria.pfa.adriaReporting.enumeration;
 
 public enum TypeCodification {
-    PRODUIT("Produit"),
-    TRANSACTION("Transaction");
+    TYPE_PRODUIT("Type du produit"),
+    TYPE_TRANSACTION("Type de transaction");
 
     private final String value;
 

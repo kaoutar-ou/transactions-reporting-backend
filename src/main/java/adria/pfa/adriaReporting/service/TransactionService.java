@@ -113,6 +113,7 @@ public class TransactionService {
         return transaction;
     }
 
+
     public Client getClientById(Long id) {
         Client client = clientRepository.findById(id).get();
         return client;
@@ -166,6 +167,5 @@ public class TransactionService {
         transaction.setReference(this.genererReferenceWithcurrentTimeMillis());
         transactionRepository.save(transaction);
     }
-
 
 }

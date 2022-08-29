@@ -3,6 +3,7 @@ package adria.pfa.adriaReporting.model;
 import adria.pfa.adriaReporting.enumeration.TypePayement;
 import adria.pfa.adriaReporting.enumeration.TypeProduit;
 import adria.pfa.adriaReporting.enumeration.TypeTransaction;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import adria.pfa.adriaReporting.service.TransactionService;
 import com.itextpdf.io.util.DateTimeUtil;
 import lombok.AllArgsConstructor;
@@ -36,7 +37,6 @@ public class Transaction {
     @Column(name = "typeProduit")
     private TypeProduit typeProduit;
     @Column(name = "dateExpiration")
-//    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dateExpiration;
     @Column(name = "montant")
     private double montant;
@@ -62,6 +62,14 @@ public class Transaction {
         return this.typeProduit.getValue();
     }
 
+    public String getTypeTransactionCode() {
+        return this.typeTransaction.getCode();
+    }
+    public String getTypeProduitCode() {
+        return this.typeProduit.getCode();
+    }
+
+    @JsonIgnore
     @OneToMany(mappedBy = "transaction", fetch = FetchType.EAGER)
     private Collection<DocumentJoint> documentJoints = new ArrayList<>();
 
