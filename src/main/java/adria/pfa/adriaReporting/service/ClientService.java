@@ -8,9 +8,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientService {
 
-    @Autowired
-    ClientRepository clientRepository;
+    private ClientRepository clientRepository;
 
+    @Autowired
+    public void setClientRepository(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
     public Client getClientById(Long id) {
         Client client = clientRepository.findById(id).get();
         return client;

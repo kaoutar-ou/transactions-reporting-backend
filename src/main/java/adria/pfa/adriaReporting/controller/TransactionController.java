@@ -1,10 +1,7 @@
 package adria.pfa.adriaReporting.controller;
 
 import adria.pfa.adriaReporting.dao.TransactionDao;
-import adria.pfa.adriaReporting.model.Client;
 import adria.pfa.adriaReporting.model.Transaction;
-import adria.pfa.adriaReporting.repository.ClientRepository;
-import adria.pfa.adriaReporting.repository.TransactionRepository;
 import adria.pfa.adriaReporting.service.ClientService;
 import adria.pfa.adriaReporting.service.ReportService;
 import adria.pfa.adriaReporting.service.TransactionService;
@@ -27,17 +24,26 @@ import java.util.List;
 @CrossOrigin(origins = "*", maxAge = 3700)
 public class TransactionController {
 
-    @Autowired
     private TransactionService transactionService;
 
-    @Autowired
     private ReportService reportService;
 
-    @Autowired
-    private TransactionRepository transactionRepository;
+    private ClientService clientService;
 
     @Autowired
-    private ClientService clientService;
+    public void setTransactionService(TransactionService transactionService) {
+        this.transactionService = transactionService;
+    }
+
+    @Autowired
+    public void setReportService(ReportService reportService) {
+        this.reportService = reportService;
+    }
+
+    @Autowired
+    public void setClientService(ClientService clientService) {
+        this.clientService = clientService;
+    }
 
     @GetMapping("/{idClient}")
     public ResponseEntity<Page<Transaction>> listTransactions(@PathVariable Long idClient,

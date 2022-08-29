@@ -11,8 +11,14 @@ import java.util.Set;
 
 @Service
 public class BeneficiaireService {
-    @Autowired
+
     private TransactionService transactionService;
+
+    @Autowired
+    public void setTransactionService(TransactionService transactionService) {
+        this.transactionService = transactionService;
+    }
+
 
     public Set<Beneficiaire> listBeneficiairesByClientId(Long idClient) {
         List<Transaction> transactions = transactionService.listTransactions(idClient);

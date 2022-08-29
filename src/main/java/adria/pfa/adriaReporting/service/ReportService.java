@@ -2,6 +2,7 @@ package adria.pfa.adriaReporting.service;
 
 import adria.pfa.adriaReporting.model.Client;
 import adria.pfa.adriaReporting.model.Transaction;
+import adria.pfa.adriaReporting.repository.ClientRepository;
 import com.itextpdf.html2pdf.ConverterProperties;
 import com.itextpdf.html2pdf.HtmlConverter;
 import net.sf.jasperreports.engine.*;
@@ -26,11 +27,18 @@ import java.util.Map;
 @Service
 public class ReportService {
 
-    @Autowired
-    TransactionService transactionService;
+    private TransactionService transactionService;
+    private TemplateEngine templateEngine;
 
     @Autowired
-    private TemplateEngine templateEngine;
+    public void setTransactionService(TransactionService transactionService) {
+        this.transactionService = transactionService;
+    }
+
+    @Autowired
+    public void setTemplateEngine(TemplateEngine templateEngine) {
+        this.templateEngine = templateEngine;
+    }
 
     public byte[] getPdfReport(Long id_client, Long id_transaction) {
 

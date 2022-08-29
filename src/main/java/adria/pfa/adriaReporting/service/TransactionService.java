@@ -25,20 +25,36 @@ import java.util.List;
 @Service
 public class TransactionService {
 
-    @Autowired
     private ClientRepository clientRepository;
 
-    @Autowired
     private BeneficiaireRepository beneficiaireRepository;
 
-    @Autowired
     private TransactionRepository transactionRepository;
 
-    @Autowired
     private SearchTransactionRepository searchTransactionRepository;
     private static String letterLower = "abcdefghijklmnopqrstuvwxyz";
     private static String letterUpper= letterLower.toUpperCase();
 
+
+    @Autowired
+    public void setClientRepository(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
+
+    @Autowired
+    public void setBeneficiaireRepository(BeneficiaireRepository beneficiaireRepository) {
+        this.beneficiaireRepository = beneficiaireRepository;
+    }
+
+    @Autowired
+    public void setTransactionRepository(TransactionRepository transactionRepository) {
+        this.transactionRepository = transactionRepository;
+    }
+
+    @Autowired
+    public void setSearchTransactionRepository(SearchTransactionRepository searchTransactionRepository) {
+        this.searchTransactionRepository = searchTransactionRepository;
+    }
 
     public List<Transaction> listTransactions(Long client_id) {
         Client client = clientRepository.findById(client_id).get();
