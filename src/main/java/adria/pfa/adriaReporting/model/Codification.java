@@ -23,10 +23,10 @@ public class Codification {
     @Column(name = "type", nullable = false)
     private String type;
 
-    @Column(name = "libelle")
+    @Column(name = "libelle", nullable = false)
     private String libelle;
 
-    @Column(name = "code")
+    @Column(name = "code", unique = true, nullable = false)
     private String code;
 
 
