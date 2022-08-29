@@ -3,6 +3,7 @@ package adria.pfa.adriaReporting.model;
 import adria.pfa.adriaReporting.enumeration.TypePayement;
 import adria.pfa.adriaReporting.enumeration.TypeProduit;
 import adria.pfa.adriaReporting.enumeration.TypeTransaction;
+import adria.pfa.adriaReporting.service.TransactionService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @Column(name = "reference", unique = true, nullable = false)
-    private String reference;
+    private String reference= TransactionService.genererReferenceWithcurrentTimeMillis();
     @Enumerated(EnumType.STRING)
     @Column(name = "typeTransaction")
     private TypeTransaction typeTransaction;
@@ -71,11 +72,12 @@ public class Transaction {
     @JoinColumn(name = "beneficaire_id")
     private Beneficiaire beneficiaire;
 
-    public Transaction(String reference, TypeTransaction typeTransaction, TypePayement typePayement, TypeProduit typeProduit, Date date, double montant, ArrayList<DocumentJoint> documentJoints, Client client, Beneficiaire beneficiaire) {
-        this.reference = reference;
+    public Transaction( TypeTransaction typeTransaction, TypePayement typePayement, TypeProduit typeProduit, Date date, double montant, ArrayList<DocumentJoint> documentJoints, Client client, Beneficiaire beneficiaire) {
+        //this.reference = reference;
         this.typeTransaction = typeTransaction;
         this.typePayement = typePayement;
         this.typeProduit = typeProduit;
+
         this.dateExpiration = date;
         this.montant = montant;
         this.documentJoints = documentJoints;

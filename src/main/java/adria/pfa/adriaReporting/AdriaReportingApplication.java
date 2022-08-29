@@ -80,15 +80,15 @@ public class AdriaReportingApplication {
 //            beneficiaireRepository.save(beneficiaire3);
 //
 //            for (int i=0 ; i<15 ; i++) {
-//                transactionRepository.save(new Transaction("reference" + random.nextLong(0,999999999), TypeTransaction.EMISSION, TypePayement.PAYEMENT_CONTRE, TypeProduit.EXPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire1));
-//                transactionRepository.save(new Transaction("reference" + random.nextLong(0,999999999), TypeTransaction.AMENDEMENT, TypePayement.PAYEMENT_DIFFERE, TypeProduit.IMPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire2));
-//                transactionRepository.save(new Transaction("reference" + random.nextLong(0,999999999), TypeTransaction.MESSAGE, TypePayement.PAYEMENT_CONTRE, TypeProduit.IMPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire1));
-//                transactionRepository.save(new Transaction("reference" + random.nextLong(0,999999999), TypeTransaction.MODIFICATION, TypePayement.PAYEMENT_DIFFERE, TypeProduit.EXPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire1));
-//                transactionRepository.save(new Transaction("reference" + random.nextLong(0,999999999), TypeTransaction.EMISSION, TypePayement.PAYEMENT_CONTRE, TypeProduit.EXPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire2));
-//                transactionRepository.save(new Transaction("reference" + random.nextLong(0,999999999), TypeTransaction.UTILISATION_A_ECHEANCE, TypePayement.PAYEMENT_DIFFERE, TypeProduit.EXPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire3));
-//                transactionRepository.save(new Transaction("reference" + random.nextLong(0,999999999), TypeTransaction.UTILISATION_A_VUE, TypePayement.PAYEMENT_CONTRE, TypeProduit.EXPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire3));
-//                transactionRepository.save(new Transaction("reference" + random.nextLong(0,999999999), TypeTransaction.MESSAGE, TypePayement.PAYEMENT_DIFFERE, TypeProduit.EXPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire3));
-//                transactionRepository.save(new Transaction("reference" + random.nextLong(0,999999999), TypeTransaction.MODIFICATION, TypePayement.PAYEMENT_CONTRE, TypeProduit.EXPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire3));
+//                transactionRepository.save(new Transaction( TypeTransaction.EMISSION, TypePayement.PAYEMENT_CONTRE, TypeProduit.EXPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire1));
+//                transactionRepository.save(new Transaction( TypeTransaction.AMENDEMENT, TypePayement.PAYEMENT_DIFFERE, TypeProduit.IMPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire2));
+//                transactionRepository.save(new Transaction( TypeTransaction.MESSAGE, TypePayement.PAYEMENT_CONTRE, TypeProduit.IMPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire1));
+//                transactionRepository.save(new Transaction( TypeTransaction.MODIFICATION, TypePayement.PAYEMENT_DIFFERE, TypeProduit.EXPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire1));
+//                transactionRepository.save(new Transaction( TypeTransaction.EMISSION, TypePayement.PAYEMENT_CONTRE, TypeProduit.EXPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire2));
+//                transactionRepository.save(new Transaction( TypeTransaction.UTILISATION_A_ECHEANCE, TypePayement.PAYEMENT_DIFFERE, TypeProduit.EXPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire3));
+//                transactionRepository.save(new Transaction( TypeTransaction.UTILISATION_A_VUE, TypePayement.PAYEMENT_CONTRE, TypeProduit.EXPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire3));
+//                transactionRepository.save(new Transaction( TypeTransaction.MESSAGE, TypePayement.PAYEMENT_DIFFERE, TypeProduit.EXPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire3));
+//                transactionRepository.save(new Transaction( TypeTransaction.MODIFICATION, TypePayement.PAYEMENT_CONTRE, TypeProduit.EXPORT, new Date(), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire3));
 //            }
 //        };
 //    }

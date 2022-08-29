@@ -16,6 +16,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
+
+import java.security.SecureRandom;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +36,9 @@ public class TransactionService {
 
     @Autowired
     private SearchTransactionRepository searchTransactionRepository;
+    private static String letterLower = "abcdefghijklmnopqrstuvwxyz";
+    private static String letterUpper= letterLower.toUpperCase();
+
 
     public List<Transaction> listTransactions(Long client_id) {
         Client client = clientRepository.findById(client_id).get();
@@ -93,4 +99,26 @@ public class TransactionService {
         Client client = clientRepository.findById(id).get();
         return client;
     }
+
+    public static String genererReferenceWithcurrentTimeMillis() {
+        Long dateoftoday =  System.currentTimeMillis();
+        String dateoftodayinms = dateoftoday.toString().substring(8);
+        LocalDate current_date = LocalDate.now();
+        int current_Year = current_date.getYear();
+
+        SecureRandom random = new SecureRandom();
+        String ref="";
+
+
+
+        for(int i=0;i<2;i++) {
+            ref+=letterUpper.charAt(random.nextInt(letterUpper.length()));
+        }
+        ref+=current_Year;
+        ref+=dateoftodayinms;
+
+        return ref;
+    }
+
+
 }
