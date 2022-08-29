@@ -1,8 +1,8 @@
 package adria.pfa.adriaReporting.enumeration;
 
 public enum TypeProduit {
-    IMPORT("Import"),
-    EXPORT("Export");
+    IMPORT("IM"),
+    EXPORT("EX");
 
     private final String value;
 

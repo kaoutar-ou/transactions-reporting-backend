@@ -1,12 +1,12 @@
 package adria.pfa.adriaReporting.enumeration;
 
 public enum TypeTransaction {
-    EMISSION("Emission"),
-    MODIFICATION("Modification"),
-    AMENDEMENT("Amendement"),
-    UTILISATION_A_VUE("Utilisation à vue"),
-    UTILISATION_A_ECHEANCE("Utilisation à échéance"),
-    MESSAGE("Message");
+    EMISSION("EM"),
+    MODIFICATION("MOD"),
+    AMENDEMENT("AM"),
+    UTILISATION_A_VUE("UV"),
+    UTILISATION_A_ECHEANCE("UH"),
+    MESSAGE("MSG");
 
     private final String value;
 

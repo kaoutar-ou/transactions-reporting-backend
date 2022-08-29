@@ -4,6 +4,7 @@ import adria.pfa.adriaReporting.enumeration.TypePayement;
 import adria.pfa.adriaReporting.enumeration.TypeProduit;
 import adria.pfa.adriaReporting.enumeration.TypeTransaction;
 import adria.pfa.adriaReporting.service.TransactionService;
+import com.itextpdf.io.util.DateTimeUtil;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     @Column(name = "reference", unique = true, nullable = false)
-    private String reference= TransactionService.genererReferenceWithcurrentTimeMillis();
+    private String reference;
     @Enumerated(EnumType.STRING)
     @Column(name = "typeTransaction")
     private TypeTransaction typeTransaction;
@@ -73,12 +74,13 @@ public class Transaction {
     private Beneficiaire beneficiaire;
 
     public Transaction( TypeTransaction typeTransaction, TypePayement typePayement, TypeProduit typeProduit, Date date, double montant, ArrayList<DocumentJoint> documentJoints, Client client, Beneficiaire beneficiaire) {
+
         //this.reference = reference;
         this.typeTransaction = typeTransaction;
         this.typePayement = typePayement;
         this.typeProduit = typeProduit;
 
-        this.dateExpiration = date;
+        this.dateExpiration = DateTimeUtil.addDaysToDate(date,20);
         this.montant = montant;
         this.documentJoints = documentJoints;
         this.client = client;

@@ -1,10 +1,12 @@
 package adria.pfa.adriaReporting.service;
 
 import adria.pfa.adriaReporting.dao.TransactionDao;
+import adria.pfa.adriaReporting.enumeration.TypePayement;
 import adria.pfa.adriaReporting.enumeration.TypeProduit;
 import adria.pfa.adriaReporting.enumeration.TypeTransaction;
 import adria.pfa.adriaReporting.model.Beneficiaire;
 import adria.pfa.adriaReporting.model.Client;
+import adria.pfa.adriaReporting.model.DocumentJoint;
 import adria.pfa.adriaReporting.model.Transaction;
 import adria.pfa.adriaReporting.repository.BeneficiaireRepository;
 import adria.pfa.adriaReporting.repository.ClientRepository;
@@ -19,8 +21,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.security.SecureRandom;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class TransactionService {
@@ -31,9 +32,10 @@ public class TransactionService {
 
     private TransactionRepository transactionRepository;
 
+
     private SearchTransactionRepository searchTransactionRepository;
-    private static String letterLower = "abcdefghijklmnopqrstuvwxyz";
-    private static String letterUpper= letterLower.toUpperCase();
+    private  String letterLower = "abcdefghijklmnopqrstuvwxyz";
+    private String letterUpper= letterLower.toUpperCase();
 
 
     @Autowired
@@ -116,7 +118,7 @@ public class TransactionService {
         return client;
     }
 
-    public static String genererReferenceWithcurrentTimeMillis() {
+    public  String genererReferenceWithcurrentTimeMillis() {
         Long dateoftoday =  System.currentTimeMillis();
         String dateoftodayinms = dateoftoday.toString().substring(8);
         LocalDate current_date = LocalDate.now();
@@ -134,6 +136,35 @@ public class TransactionService {
         ref+=dateoftodayinms;
 
         return ref;
+    }
+    public  String genererReference() {
+
+        Random random = new Random();
+        String ref="RF";
+        Set<Integer> randomNumbers = new HashSet<>();
+        List<Transaction> allTransactions = transactionRepository.findAll();
+        for(Transaction transaction:allTransactions) {
+            randomNumbers.add(Integer.parseInt(transaction.getReference().substring(6)));
+        }
+        while (randomNumbers.size()==allTransactions.size()){
+            Integer newRandom = random.nextInt(99999);
+            while (newRandom.toString().length()<5){newRandom=Integer.parseInt("0"+newRandom.toString());}
+            randomNumbers.add(newRandom);
+        }
+        LocalDate current_date = LocalDate.now();
+        int current_Year = current_date.getYear();
+        ref+=current_Year;
+        List<Integer> numbers = randomNumbers.stream().toList();
+        ref+=numbers.get(numbers.size()-1);
+
+
+
+        return ref;
+    }
+    public void creatTransaction(TypeTransaction typeTransaction, TypePayement typePayement, TypeProduit typeProduit, Date date, double montant, ArrayList<DocumentJoint> documentJoints, Client client, Beneficiaire beneficiaire){
+        Transaction transaction = new Transaction( typeTransaction,  typePayement, typeProduit,  date,  montant,  documentJoints, client, beneficiaire);
+        transaction.setReference(this.genererReferenceWithcurrentTimeMillis());
+        transactionRepository.save(transaction);
     }
 
 
