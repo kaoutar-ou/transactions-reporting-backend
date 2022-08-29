@@ -43,8 +43,8 @@ public class AdriaReportingApplication {
     private BeneficiaireRepository beneficiaireRepository;
 
     @Autowired
-    public BeneficiaireRepository getBeneficiaireRepository() {
-        return beneficiaireRepository;
+    public void setBeneficiaireRepository(BeneficiaireRepository beneficiaireRepository) {
+        this.beneficiaireRepository = beneficiaireRepository;
     }
 
     private TransactionRepository transactionRepository;
@@ -54,7 +54,7 @@ public class AdriaReportingApplication {
         this.transactionRepository = transactionRepository;
     }
 
-    //    @Bean
+//    @Bean
 //    CommandLineRunner run(TransactionService transactionService) {
 //        return args -> {
 //            Banque banque1 = banqueRepository.save(new Banque(null, "banque1", "codeBIC1", "address1", new ArrayList<Client>(), new ArrayList<Beneficiaire>()));
