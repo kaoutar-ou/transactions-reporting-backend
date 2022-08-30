@@ -1,7 +1,7 @@
 package adria.pfa.adriaReporting.controller;
 
-import adria.pfa.adriaReporting.dao.DocumentJointDto;
-import adria.pfa.adriaReporting.dao.MessageResponse;
+import adria.pfa.adriaReporting.dto.DocumentJointDto;
+import adria.pfa.adriaReporting.dto.MessageResponse;
 import adria.pfa.adriaReporting.model.DocumentJoint;
 import adria.pfa.adriaReporting.service.DocumentJointService;
 import org.springframework.beans.factory.annotation.Autowired;

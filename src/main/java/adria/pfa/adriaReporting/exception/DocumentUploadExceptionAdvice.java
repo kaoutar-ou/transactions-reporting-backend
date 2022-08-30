@@ -1,6 +1,6 @@
 package adria.pfa.adriaReporting.exception;
 
-import adria.pfa.adriaReporting.dao.MessageResponse;
+import adria.pfa.adriaReporting.dto.MessageResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

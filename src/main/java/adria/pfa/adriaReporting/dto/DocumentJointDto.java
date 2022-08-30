@@ -1,4 +1,4 @@
-package adria.pfa.adriaReporting.dao;
+package adria.pfa.adriaReporting.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
