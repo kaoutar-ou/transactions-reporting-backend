@@ -53,12 +53,7 @@ public class PopulateDB {
         this.transactionRepository = transactionRepository;
     }
 
-    public void insertDataToDB() {
-
-        int nombreBanques = 3;
-        int nombreClientsParBanque = 1;
-        int nombreBeneficiairesParBanque = 3;
-        int nombreTransactionsParClient = 50;
+    public void insertDataToDB(int nombreBanques, int nombreClientsParBanque, int nombreBeneficiairesParBanque, int nombreTransactionsParClient) {
 
         Random random = new Random();
 

@@ -66,10 +66,6 @@ public class DocumentJointController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + documentJoint.getName() + "\"")
                 .body(documentJoint.getData());
-
-//        return ResponseEntity.ok()
-//                .contentType(MediaType.valueOf(documentJoint.getType()))
-//                .body(documentJoint.getData());
     }
 
 }

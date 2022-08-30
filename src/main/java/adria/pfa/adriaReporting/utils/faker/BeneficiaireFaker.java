@@ -31,7 +31,6 @@ public class BeneficiaireFaker {
 
         beneficiaire.setNomComplet(lastName + " " + firstName);
         beneficiaire.setAddress(faker.address().fullAddress());
-//        beneficiaire.setAccount(Long.parseLong(faker.business().creditCardNumber().replace("-","")));
 
         Long account = 0L;
         do {
@@ -41,7 +40,6 @@ public class BeneficiaireFaker {
         beneficiaire.setAccount(account);
 
         beneficiaire.setBanque(banque);
-//        System.out.println(beneficiaire.toString());
         return beneficiaireRepository.save(beneficiaire);
     }
 }

@@ -33,8 +33,6 @@ public class ClientFaker {
         client.setNomComplet(lastName + " " + firstName);
         client.setAddress(faker.address().fullAddress());
 
-//        client.setAccount(Long.parseLong(faker.business().creditCardNumber().replace("-","")));
-
         Long account = 0L;
         do {
             account = Long.parseLong(faker.regexify("[0-9]{12}"));
@@ -44,7 +42,6 @@ public class ClientFaker {
 
         client.setBanque(banque);
 
-//        System.out.println(client.toString());
         return clientRepository.save(client);
     }
 }

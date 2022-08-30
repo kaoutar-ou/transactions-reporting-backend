@@ -15,11 +15,11 @@ public enum TypeTransaction {
         this.value = value;
         this.code = code;
     }
-
     public String getValue() {
         return value;
     }
     public String getCode() {
         return code;
     }
+
 }

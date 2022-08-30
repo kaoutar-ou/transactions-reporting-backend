@@ -34,7 +34,6 @@ public class TransactionFaker {
         calendar.setTime(new Date());
         Random random = new Random();
 
-        // TODO .. put this in a function
         LocalDate startDate = LocalDate.of(2020, 1, 1);
         LocalDate endDate = LocalDate.of(2022, 8, 30);
         long randomDate = ThreadLocalRandom.current().nextLong(startDate.toEpochDay(), endDate.toEpochDay());
@@ -54,7 +53,7 @@ public class TransactionFaker {
         Transaction transaction = new Transaction();
         String reference = "";
         do {
-            reference = "RF" + calendar.get(Calendar.YEAR) + faker.regexify("[0-9]{5}");
+            reference = "RF" + dateCreation.toLocalDateTime().getYear() + faker.regexify("[0-9]{5}");
         } while (transactionRepository.findByReference(reference).isPresent());
         transaction.setReference(reference);
         transaction.setTypeTransaction(typeTransactions.get(random.nextInt(typeTransactions.size())));
@@ -65,7 +64,6 @@ public class TransactionFaker {
         transaction.setClient(client);
         transaction.setBeneficiaire(beneficiaire);
         transaction.setMontant(random.nextDouble(1000, 1000000));
-//        System.out.println(transaction.toString());
         return transactionRepository.save(transaction);
     }
 }

@@ -26,7 +26,7 @@ public class BanqueFaker {
         } while (banqueRepository.findByCodeBIC(codeBIC).isPresent());
         banque.setCodeBIC(codeBIC);
         banque.setAddress(faker.address().fullAddress());
-//        System.out.println(banque.toString());
+
         return banqueRepository.save(banque);
     }
 
