@@ -7,6 +7,7 @@ import adria.pfa.adriaReporting.model.*;
 import adria.pfa.adriaReporting.repository.*;
 import adria.pfa.adriaReporting.service.CodificationService;
 import adria.pfa.adriaReporting.service.TransactionService;
+import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,10 +15,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @SpringBootApplication
 public class AdriaReportingApplication {
@@ -69,9 +71,116 @@ public class AdriaReportingApplication {
     }
 
 
-//    @Bean
-//    CommandLineRunner run(TransactionService transactionService) {
-//        return args -> {
+    public Banque banqueFaker() {
+        Faker faker = new Faker();
+        Banque banque = new Banque();
+        banque.setNom(faker.regexify("[A-Z]{4}") + " Bank");
+        banque.setCodeBIC(faker.regexify("[A-Z0-9]{4}[A-Z]{2}[A-Z0-9]{2}"));
+        banque.setAddress(faker.address().fullAddress());
+//        System.out.println(banque.toString());
+        return banqueRepository.save(banque);
+    }
+
+    public Client clientFaker(Banque banque) {
+        Faker faker = new Faker();
+        Client client = new Client();
+        String lastName = faker.name().lastName();
+        String firstName = faker.name().firstName();
+        client.setNom(lastName);
+        client.setPrenom(firstName);
+        client.setUsername(faker.name().username());
+        client.setEmail(faker.regexify("[a-z]{1}[a-z0-9]{5,10}[@]{1}(gmail|hotmail|outlook)") + ".com");
+        client.setPassword(faker.regexify("[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]{8,15}"));
+        client.setType("client");
+
+        client.setNomComplet(lastName + " " + firstName);
+        client.setAddress(faker.address().fullAddress());
+        client.setAccount(Long.parseLong(faker.business().creditCardNumber().replace("-","")));
+        client.setBanque(banque);
+//        System.out.println(client.toString());
+        return clientRepository.save(client);
+    }
+
+    public Beneficiaire beneficiaireFaker(Banque banque) {
+        Faker faker = new Faker();
+        Beneficiaire beneficiaire = new Beneficiaire();
+        String lastName = faker.name().lastName();
+        String firstName = faker.name().firstName();
+        beneficiaire.setNom(lastName);
+        beneficiaire.setPrenom(firstName);
+        beneficiaire.setUsername(faker.name().username());
+        beneficiaire.setEmail(faker.regexify("[a-z]{1}[a-z0-9]{5,10}[@]{1}(gmail|hotmail|outlook)") + ".com");
+        beneficiaire.setPassword(faker.regexify("[-!#$%&'*+/0-9=?A-Z^_`a-z{|}~]{8,15}"));
+        beneficiaire.setType("beneficiaire");
+
+        beneficiaire.setNomComplet(lastName + " " + firstName);
+        beneficiaire.setAddress(faker.address().fullAddress());
+        beneficiaire.setAccount(Long.parseLong(faker.business().creditCardNumber().replace("-","")));
+        beneficiaire.setBanque(banque);
+//        System.out.println(beneficiaire.toString());
+        return beneficiaireRepository.save(beneficiaire);
+    }
+
+    public Transaction transactionFaker(Client client, Beneficiaire beneficiaire) {
+        Faker faker = new Faker();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        Random random = new Random();
+
+        // TODO .. put this in a function
+        LocalDate startDate = LocalDate.of(2020, 1, 1);
+        LocalDate endDate = LocalDate.of(2022, 8, 30);
+        long randomDate = ThreadLocalRandom.current().nextLong(startDate.toEpochDay(), endDate.toEpochDay());
+        LocalDate localDateCreation = LocalDate.ofEpochDay(randomDate);
+        LocalTime localTimeCreation = LocalTime.now();
+        Timestamp dateCreation = Timestamp.valueOf(LocalDateTime.of(localDateCreation, localTimeCreation));
+
+        LocalDate localDateExpiration = LocalDate.ofEpochDay(randomDate + random.nextInt(20,90));
+        LocalTime localTimeExpiration = LocalTime.now();
+        Timestamp dateExpiration = Timestamp.valueOf(LocalDateTime.of(localDateExpiration, localTimeExpiration));
+
+        List<TypeTransaction> typeTransactions = Arrays.asList(TypeTransaction.AMENDEMENT, TypeTransaction.EMISSION,
+                TypeTransaction.MESSAGE, TypeTransaction.MODIFICATION,
+                TypeTransaction.UTILISATION_A_ECHEANCE, TypeTransaction.UTILISATION_A_VUE);
+        List<TypePayement> typePayements = Arrays.asList(TypePayement.PAYEMENT_CONTRE, TypePayement.PAYEMENT_DIFFERE, TypePayement.MIXTE);
+        List<TypeProduit> typeProduits = Arrays.asList(TypeProduit.EXPORT, TypeProduit.IMPORT);
+        Transaction transaction = new Transaction();
+        transaction.setReference("RF" + calendar.get(Calendar.YEAR) + faker.regexify("[0-9]{5}"));
+        transaction.setTypeTransaction(typeTransactions.get(random.nextInt(typeTransactions.size())));
+        transaction.setTypePayement(typePayements.get(random.nextInt(typePayements.size())));
+        transaction.setTypeProduit(typeProduits.get(random.nextInt(typeProduits.size())));
+        transaction.setDateCreation(dateCreation);
+        transaction.setDateExpiration(dateExpiration);
+        transaction.setClient(client);
+        transaction.setBeneficiaire(beneficiaire);
+        transaction.setMontant(random.nextDouble(1000, 1000000));
+//        System.out.println(transaction.toString());
+        return transactionRepository.save(transaction);
+    }
+    @Bean
+    CommandLineRunner run(TransactionService transactionService) {
+        return args -> {
+//            test();
+
+
+//            LocalDate startDate = LocalDate.of(2020, 1, 1);
+//            LocalDate endDate = LocalDate.of(2022, 8, 30);
+//            long randomDate = ThreadLocalRandom.current().longs(startDate.toEpochDay(), endDate.toEpochDay()).findAny().getAsLong();
+//
+//            System.out.println(randomDate);
+//            System.out.println(LocalDate.ofEpochDay(randomDate));
+//            System.out.println(LocalDate.ofEpochDay(randomDate + 30));
+//            System.out.println(new Timestamp(randomDate));
+////            System.out.println(Timestamp.valueOf(LocalDateTime.of(LocalDate.ofEpochDay(randomDate).getYear(), LocalDate.ofEpochDay(randomDate).getMonth(), LocalDate.ofEpochDay(randomDate).getDayOfMonth(), )));
+//            System.out.println(Timestamp.valueOf(LocalDateTime.of(LocalDate.ofEpochDay(randomDate), LocalTime.now())));
+
+//            Faker faker = new Faker();
+//            System.out.println(faker.regexify("[a-z]{1}[a-z0-9]{5,10}[@]{1}(gmail|hotmail|outlook)"));
+//            System.out.println(faker.regexify("[a-z]{1}[a-z0-9]{5,10}[@]{1}(gmail|hotmail|outlook)"));
+//            System.out.println(faker.regexify("[a-z]{1}[a-z0-9]{5,10}[@]{1}(gmail|hotmail|outlook)"));
+//            System.out.println(faker.regexify("[a-z]{1}[a-z0-9]{5,10}[@]{1}(gmail|hotmail|outlook)"));
+//            System.out.println(faker.regexify("[a-z]{1}[a-z0-9]{5,10}[@]{1}(gmail|hotmail|outlook)"));
+//            System.out.println(Long.parseLong(faker.business().creditCardNumber().replace("-","")));
 ////            Banque banque1 = banqueRepository.save(new Banque(null, "Banque 1", "codeBIC1", "Adresse 1", new ArrayList<Client>(), new ArrayList<Beneficiaire>()));
 ////            Banque banque2 = banqueRepository.save(new Banque(null, "Banque 2", "codeBIC2", "Adresse 2", new ArrayList<Client>(), new ArrayList<Beneficiaire>()));
 //
@@ -142,7 +251,7 @@ public class AdriaReportingApplication {
 //                transactionService.creatTransaction( TypeTransaction.MESSAGE, TypePayement.PAYEMENT_DIFFERE, TypeProduit.EXPORT,  new Timestamp(Calendar.getInstance().getTime().getTime()), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire3);
 //                transactionService.creatTransaction( TypeTransaction.MODIFICATION, TypePayement.PAYEMENT_CONTRE, TypeProduit.EXPORT,  new Timestamp(Calendar.getInstance().getTime().getTime()), random.nextDouble(0, 900000), new ArrayList<DocumentJoint>(), client1, beneficiaire3);
 //            }
-//        };
-//    }
+        };
+    }
 
 }
