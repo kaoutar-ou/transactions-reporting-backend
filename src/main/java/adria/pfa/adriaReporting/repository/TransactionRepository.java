@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
     List<Transaction> findAllByDateCreation(Date date);
@@ -24,4 +25,5 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     List<Transaction> findAllByClientAndDateCreation(Client client, Date dateCreation);
     public Page<Transaction> findByClient(Client client, Pageable pageable);
 
+    Optional<Transaction> findByReference(String reference);
 }

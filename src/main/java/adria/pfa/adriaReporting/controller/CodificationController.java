@@ -26,12 +26,10 @@ public class CodificationController {
 
     @GetMapping("/type/{type}")
     public ResponseEntity<List<Codification>> getListCodificationByType(@PathVariable String type) {
-//        List codifications = codificationRepository.findAllByType(type);
         List<Codification> codifications = codificationService.getCodeificationsByType(type);
         return ResponseEntity.ok().body(codifications);}
     @GetMapping("/{idCodification}")
     public ResponseEntity<Codification> getCodificationById(@PathVariable Long idCodification) {
-//        Codification codification = codificationRepository.findById(idCodification).get();
         Codification codification = codificationService.getCodeificationById(idCodification);
         return ResponseEntity.ok().body(codification);}
 }

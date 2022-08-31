@@ -41,8 +41,11 @@ public class Transaction {
     @Column(name = "montant")
     private double montant;
 
-    @CreationTimestamp
-    private Timestamp dateCreation;
+    @Column(name = "dateCreation")
+    private Date dateCreation;
+
+//    @CreationTimestamp
+//    private Timestamp dateCreation;
 
     public String getDateCreationValue() {
         return this.dateCreation.toString().substring(0,10);
@@ -83,7 +86,6 @@ public class Transaction {
 
     public Transaction( TypeTransaction typeTransaction, TypePayement typePayement, TypeProduit typeProduit, Date date, double montant, ArrayList<DocumentJoint> documentJoints, Client client, Beneficiaire beneficiaire) {
 
-        //this.reference = reference;
         this.typeTransaction = typeTransaction;
         this.typePayement = typePayement;
         this.typeProduit = typeProduit;
