@@ -40,7 +40,7 @@ public class AdriaReportingApplication {
 
     @EventListener(ApplicationReadyEvent.class)
     public void run() {
-        populateDB.insertDataToDB(2, 1, 3, 50);
+//        populateDB.insertDataToDB(2, 1, 3, 50);
     }
 
 }
